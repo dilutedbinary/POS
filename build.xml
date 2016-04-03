@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="POS" default="dist" basedir=".">
+    <property name="src.dir"     value="src/pointofsalesystem"/>
+    <property name="cc.dir"      value="src/creditcardauthenticator"/>
+    <property name="tax.dir"     value="src/taxcalculator"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="ccclasses.dir" value = "${build.dir}/ccclasses"/>
+    <property name="taxclasses.dir" value= "${build.dir}/taxclasses"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="main-class"  value="src/pointofsalesystem/PointOfSaleSystem"/>
+    <path id="classpath">
+        <fileset dir ="${lib.dir}" includes= "**/*.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compilelibs">
+        <mkdir dir="${ccclasses.dir}"/>
+        <mkdir dir="${taxclasses.dir}"/>
+        <javac srcdir="${cc.dir}" destdir="${ccclasses.dir}" classpathref="classpath"/>
+        <javac srcdir="${tax.dir}" destdir="${taxclasses.dir}" classpathref="classpath"/>
+    </target>
+
+    <target name="jarlibs" depends="compilelibs">
+        <jar destfile="${lib.dir}/creditcardauthenticator.jar" basedir="${ccclasses.dir}"/>
+        <jar destfile="${lib.dir}/taxcalculator.jar" basedir="${taxclasses.dir}"/>
+    </target>
+
+<target name="compile" depends = "jarlibs">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java fork="true" classname="${main-class}">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.dir}/${ant.project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="clean-build" depends="clean,jar"/>
+
+    <target name="main" depends="clean,run"/>
+
+</project>
