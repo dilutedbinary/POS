@@ -17,7 +17,7 @@
     <property name="taxclasses.dir" value= "${build.dir}/taxclasses"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir" value="lib"/>
-    <property name="main-class"  value="src/pointofsalesystem/PointOfSaleSystem"/>
+    <property name="main-class"  value="pointofsalesystem.PointOfSaleSystem"/>
     <path id="classpath">
         <fileset dir ="${lib.dir}" includes= "**/*.jar"/>
     </path>
