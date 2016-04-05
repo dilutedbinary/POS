@@ -1,0 +1,15 @@
+$crumDogBillionairesPOS
+
+2016/04/05 11:00:59
+
+Name | Price | Qty |
+
+Cookies 6.32  x1
+
+SubTotal: $6.32
+Tax: $0.44
+Total: $6.76
+
+Cashier:ddff
+
+HAVE  A GREAT DAY!
