@@ -5,14 +5,16 @@ public class Address {
   private String mLine1;
   private String mLine2;
   private String mCity;
+  private String mState;
   private String mZip;
   
   /** Constructor which creates a Address object. */
-  public Address(String line1, String line2, String city, String zip) {
+  public Address(String line1, String line2, String city, String zip,String state) {
     mLine1 = line1;
     mLine2 = line2;
     mCity = city;
     mZip = zip;
+    mState = state;
   }
   
   /** Gets line1. */
@@ -53,5 +55,15 @@ public class Address {
   /** Sets zip. */
   public void setZip(String zip) {
     mZip = zip;
+  }
+  
+   /** Gets state. */
+  public String getState() {
+    return mState;
+  }
+  
+  /** Sets state. */
+  public void setState(String state) {
+    mState = state;
   }
 }

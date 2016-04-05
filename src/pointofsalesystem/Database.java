@@ -398,7 +398,7 @@ public class Database {
 	 * @return Arraylist of CreditCard objects ascociated with the user
 	 */
     public ArrayList getCreditCard(int userid) {
-    	ArrayList al = new ArrayList();
+    	ArrayList<CreditCard> al = new ArrayList();
 
     	if (!this.connect()) {
     		return al;
@@ -607,30 +607,7 @@ public class Database {
     	return;
     }
     
-    /**
-     * Returns information about the User who created this Database object
-     * <p>
-     * This method returns a User object containing all the information contained in the database
-     * about the user who instantiated this Database object
-     *
-     * @return User containing all the stored information about the user who created this Database object
-     *
-     */
-    ///public User getUserInfo() {
-    //Query the database based on the saved userid for the following values
-    //Get username
-    //Get userpassword
-    //Get userid
-    //Get phone number
-    //Get billing address
-    //Get shipping address
-    //Get items currently rented by user
-    //Get a list of past transacton ids
-    //Get credit card number
-    
-    //Collect all the info into a User object and return the user object
-    
-    ///}
+
     
     /**
      * Returns information about the specified Transaction
@@ -638,14 +615,17 @@ public class Database {
 	 * Returns a Transaction object containing all the information about the transaction with the passed in Transaction id
 	 *
 	 * @param transactionid id number of the transaction being looked up
-	 * @return Transcation object containing information about the the specified transaction
+	 * @return Transaction object containing information about the the specified transaction
 	 */
     public Transaction getTransactionInfo(int transactionid) {
     	if(transactionid < 0) {
     		System.out.println("ERROR in Database.getTransactionInfo - transactionid is < 0");
     		return null;
     	}
-
+        
+        if (!this.connect()) {
+    		return null;
+    	}
 
     	try{
 	    //Query the database for the transaction ascociated with the transaction id
@@ -659,15 +639,19 @@ public class Database {
     		int employee_id = rs.getInt("EMPLOYEE_ID");
     		int customer_id = rs.getInt("CUSTOMER_ID");
     		Timestamp time = rs.getTimestamp("trans_date");
+                 User customer = this.getUser(customer_id);
+                User employee = this.getUser(employee_id);
+                Transaction t = new Transaction(transactionid,customer,employee);
+               if (!this.connect()) {//We need to reconnect as the above methods disconnect us from the database
+    		return null;
+    	}
 
 	    //Now we need to query the transaction _item table for all the items asociated with the transaction
     		query = "SELECT * FROM transaction_item WHERE transaction_id = ?";
     		preStatement = conn.prepareStatement(query);
     		preStatement.setInt(1,transactionid);
     		rs = preStatement.executeQuery();
-
-	    //TODO: Update this once User's are implemented
-    		Transaction t = new Transaction(transactionid,null,null);
+	
 
     		while(rs.next()) {
     			int item_id = rs.getInt("ITEM_ID");
@@ -692,6 +676,145 @@ public class Database {
     	return null;
     }
     
+    
+    /**
+     * Stores the passed in User object to the database
+     * 
+     * @param u User to be stored on the database
+     * @return the userid of the new the user is sucessfully saved to the database, -1 if the user already exists within the database or the operation fails
+     */
+    public int storeUser(User u){
+        
+          if(this.usertype >= u.getType() && this.usertype != 0) {
+         System.out.println("Warning in Database.storeUser - Invalid permission to create a new user of this type");   
+        return -1;
+        }
+        
+        //Establish a connection to the database
+    	if (!this.connect()) {
+    		return -1;
+    	}
+
+        if(this.usertype >= u.getType() && this.usertype != 0) {
+         System.out.println("Warning in Database.storeUser - Invalid permission to create a new user of this type");   
+        return -1;
+        }
+        
+    	try{
+	    //First make sure the user isn't already saved in the data
+    		String query = "SELECT * FROM person WHERE username=? AND user_passwd=?;";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setString(1,u.getUsername());
+    		preStatement.setString(2,u.getPassword());
+    		rs = preStatement.executeQuery();
+    		if(rs.next()){
+    			System.out.println("Warning in Database.storeUser - User already exists within Database");
+                        this.disconnect();
+    			return -1;
+    		}
+
+	    //Since it doesn't exist within the Database we can store it within the database
+    		query = "INSERT INTO PERSON (username,user_passwd,user_type,name,email,home_phone,mobile_phone) VALUES (?,?,?,?,?,?,?)";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setString(1,u.getUsername());
+    		preStatement.setString(2,u.getPassword());
+    		preStatement.setInt(3,u.getType());
+    		preStatement.setString(4,u.getName());
+    		preStatement.setString(5,u.getEmail());
+    		preStatement.setString(6,u.getPhone());
+                preStatement.setString(7,u.getMobile());
+    		preStatement.executeUpdate();
+            
+            
+                
+               //Now look up the new user and return the userid assigned by the database to the new user
+               query = "SELECT * FROM person WHERE username=? AND user_passwd=?;";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setString(1,u.getUsername());
+    		preStatement.setString(2,u.getPassword());
+    		rs = preStatement.executeQuery();
+    		int new_id = rs.getInt("PERSON_ID");
+                u.setId(new_id); //might as well set the id of the new user to what the database assigned it
+
+               //Now we need to save the username and password associated with this fool
+                this.disconnect();
+                this.storeCreditCard(new_id,u.getCreditCard());
+    		this.storeAddress(new_id,u.getBillingAddress(),1);
+                this.storeAddress(new_id,u.getShippingAddress(),0);
+    		return new_id;
+    }
+        	catch (SQLException ex) {
+    		System.out.println("Error in Database.storeUser!!");
+    		System.out.println("SQLException: " + ex.getMessage());
+    		System.out.println("SQLState: " + ex.getSQLState());
+    		System.out.println("VendorError: " + ex.getErrorCode());
+    		this.disconnect();
+    		return -1;
+    	}
+    }
+    
+    /**
+     * Stores the passed in address and associates it with the passed in userid
+     * 
+     * @param userid id associated with the address we are storing
+     * @param addr  Address object we are storing to the database
+     * @param ship_or_billing 0 if it is a shipping address, > 0 if is a billing address
+     * @return true if the address is sucessfully saved to the database, false if the user already has an address associated with them or if the operation fails
+     */
+    private boolean storeAddress(int userid,Address addr,int ship_or_billing){
+       
+        //Just so it's one or zero once its in the database
+       if(ship_or_billing != 0) {
+           ship_or_billing =1;
+       }
+        
+        //Establish a connection to the database
+    	if (!this.connect()) {
+    		return false;
+    	}
+        
+        
+        try{
+	    //First make sure the user isn't already saved in the data
+    		String query = "SELECT * FROM person_address WHERE person_id=?;";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		rs = preStatement.executeQuery();
+    		if(rs.next()){
+    			System.out.println("Warning in Database.storeAddress - User already has an address associated with them within Database");
+                         this.disconnect();
+    			return false;
+    		}
+                
+          //Since it doesn't exist within the Database we can store it within the database
+    		query = "INSERT INTO PERSON_ADDRESS (person_id,line1,line2,city,state,zip,ship_or_billing) VALUES (?,?,?,?,?,?,?)";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		preStatement.setString(2,addr.getLine1());
+    		preStatement.setString(3,addr.getLine2());
+                preStatement.setString(4,addr.getCity());
+    		preStatement.setString(5,addr.getState());
+                preStatement.setString(6,addr.getZip());
+                preStatement.setInt(7,ship_or_billing);
+    		preStatement.executeUpdate();
+                this.disconnect();
+                
+    		
+    		return true;
+    }
+        	catch (SQLException ex) {
+    		System.out.println("Error in Database.storeAddress!!");
+    		System.out.println("SQLException: " + ex.getMessage());
+    		System.out.println("SQLState: " + ex.getSQLState());
+    		System.out.println("VendorError: " + ex.getErrorCode());
+    		this.disconnect();
+    		return false;
+    	}
+    }
+    
+    
+    
+    
     //Given the passed in userid ,returns a User object with info on that user
     //Read permissions must be checked!!!
     /**
@@ -700,41 +823,164 @@ public class Database {
      * @param userid of the user being looked up
      * @return User object containing information about the specified user, if the current user does not have read permission for the specified user a null pointer is returned intead
      */
-    public void getUserInfo(int userid) {
-	//If the user is looking themselves up return their own info
-	///if(this.userid = userid)
-	///return this.getUserInfo();
-
-	//If they aren't looking themselves up first get the usertype of the passed in id
-    	int lookuptype = 0;
-
-	//Now check if the user calling the function has the right permissions
-    	if (usertype >= lookuptype && usertype != 0) {
-	    //Throw an error - illegal lookup
-    		return;
+    public User getUser(int userid) {
+        if(userid < 0) {
+    		System.out.println("ERROR in Database.getUser - userid is < 0");
+    		return null;
     	}
+        
+       if(this.usertype >= userid && this.usertype != 0) {
+            System.out.println("Warning in Database.getUser - Invalid permission to get this user's info");   
+            return null;
+        }
+        
+	 if (!this.connect()) {
+    		return null;
+    	}
+         
+         try{
+	    //Query the database for the transaction ascociated with the transaction id
+    		String query = "SELECT * FROM person WHERE person_id=?";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		rs = preStatement.executeQuery();
 
+	    //Extract the info from the query
+    		rs.first();
+    		String name = rs.getString("NAME");
+    		String username = rs.getString("USERNAME");
+                String passwd = rs.getString("USER_PASSWD");
+    		int user_type = rs.getInt("USER_TYPE");
+                String email = rs.getString("EMAIL");
+                String home_phone = rs.getString("HOME_PHONE");
+                String mobile_phone = rs.getString("MOBILE_PHONE");
 
+	    //Now we need to get the addresses, credit card, and transactions associated with this user
+                CreditCard cred =(CreditCard) this.getCreditCard(userid).get(0);
+                Address[] addresses = this.getAddress(userid);
+                
+                User got_user = new User(name,home_phone,mobile_phone,email,addresses[0],addresses[1],cred,userid,user_type,username,passwd);
 
+    		this.disconnect();
+    		return got_user;
 
-
-	//All good - return the info
-	//Query the database based on the passed in userid for the following values
-	//Get username
-	//Get userpassword
-	//Get userid
-	//Get phone number
-	//Get billing address
-	//Get shipping address
-	//Get items currently rented by user
-	//Get a list of past transacton ids
-	//Get credit card number
-
-	//Collect all the info into a User object and return the user object
+    	}
+    	catch (SQLException ex) {
+    		System.out.println("Error in Database.getUser!!");
+    		System.out.println("SQLException: " + ex.getMessage());
+    		System.out.println("SQLState: " + ex.getSQLState());
+    		System.out.println("VendorError: " + ex.getErrorCode());
+    		this.disconnect();
+    	}
+           return null;
     }
     
+    /**
+     * Returns the billing and shipping address of the associated userid in an array in that order
+     * 
+     * 
+     * @param userid userid of the user whose addresses we are looking up
+     * @return array of Addresses with two addresses, the first is the billing address and the second is the shipping address, if the address doesn't exist then null is returned
+     */
+    private Address[] getAddress(int userid) {
+         if (!this.connect()) {
+    		return null;
+    	}
+         try{
+             Address shipping = null;
+             Address billing = null;
+	    //Query the database for the transaction ascociated with the transaction id
+    		String query = "SELECT * FROM person_address WHERE person_id=?";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		rs = preStatement.executeQuery();
+                rs.first();
+                String line1 = rs.getString("LINE1");
+                String line2 = rs.getString("LINE2");
+                String city = rs.getString("city");
+                String state = rs.getString("State");
+                String zip = rs.getString("zip");
+                int ship_or_bill =rs.getInt("ship_or_billing");
+                
+                if(ship_or_bill == 0) { //Shipping address
+                    shipping = new Address(line1,line2,city,zip,state);
+                }
+                else {
+                    billing = new Address(line1,line2,city,zip,state);
+                }
+                //Get the next address
+                rs.next();
+                line1 = rs.getString("LINE1");
+               line2 = rs.getString("LINE2");
+                city = rs.getString("city");
+                state = rs.getString("State");
+                zip = rs.getString("zip");
+                ship_or_bill =rs.getInt("ship_or_billing");
+                
+                if(ship_or_bill == 0) { //Shipping address
+                    shipping = new Address(line1,line2,city,zip,state);
+                }
+                else {
+                    billing = new Address(line1,line2,city,zip,state);
+                }
+                this.disconnect();
+                Address[] addresses = new Address[]{billing,shipping};
+                return addresses;
+        }
+    	catch (SQLException ex) {
+    		System.out.println("Error in Database.getAddresses!!");
+    		System.out.println("SQLException: " + ex.getMessage());
+    		System.out.println("SQLState: " + ex.getSQLState());
+    		System.out.println("VendorError: " + ex.getErrorCode());
+    		this.disconnect();
+    	}
+        return null;
+    }
     
-    
+    /**
+     * Removes the specified user from the database along with any credit cards and addresses associated with them, transactions associated with them remain however 
+     * 
+     * 
+     * @param userid of the person to be removed
+     * @return true if the user was sucessfully removed, false otherwise
+     */
+    public boolean deleteUser(int userid){
+    	if (!this.connect()) {
+    		return false;
+    	}
+
+    	try{ 
+	    //Delete the person from the person table
+    		String query = "DELETE FROM person WHERE person_id=?";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		preStatement.executeUpdate();
+                
+             //Delete the addresses from the person_address table
+                query = "DELETE FROM person_address WHERE person_id=?";
+                preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		preStatement.executeUpdate();
+                
+             //Delete associated credit cards from the credit card table
+                query = "DELETE FROM credit_Card WHERE userid=?";
+                preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		preStatement.executeUpdate();
+    		this.disconnect();
+               return true;
+    	}
+    	catch (SQLException ex) {
+    		System.out.println("Error in Database.removeItem!!");
+    		System.out.println("SQLException: " + ex.getMessage());
+    		System.out.println("SQLState: " + ex.getSQLState());
+    		System.out.println("VendorError: " + ex.getErrorCode());
+    		this.disconnect();
+    	}
+    	return false;
+        
+        
+    }
     
     public int getStock(int itemid) {
     	try {
@@ -972,45 +1218,7 @@ public class Database {
     	}
     }
 
-    /*
-     * Saves all the info about the passed in User to the database as a new User
-     * Returns the unique userid assigned by the database to the new user
-     * Throws an error if the passed in User has a non-zero userid
-     * Throws an error if the usertype of the new user is greater or equal to the current userstype (i.e cashier creating a manager
-     * */
-    ///public int insertNewUser(User u) {
-    ///if(u.usertype >= usertype) {
-    //Throw error - illegal permission
-    ///}
 
-    //Create a new unique userid
-    
-    //Save the following values
-    // username
-    // userpassword
-    // userid
-    // usertype
-    // phone number
-    // billing address
-    // shipping address
-    // items currently rented by user
-    // a list of past transacton ids
-    // credit card number
-    ///}
-    
-    /*
-     * Updates a user in the database
-     * Looks up the user based on the userid of the passed in User, then overwrites all their data
-     * Throws an error if the userid of the passed User doesn't exist
-     * Throws an error if the current User doesn't have permssion to alter the passed in User
-     * */
-    ///public boolean updateUser(User u) {
-    //First look up the usertype of the passed in User
-    ///	int lookuptype;
-    
-    
-    
-    ///}
     
     
 

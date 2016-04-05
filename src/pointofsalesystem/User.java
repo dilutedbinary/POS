@@ -17,7 +17,8 @@ public class User {
   private CreditCard mCreditCard;
   private int mUserID;
   private int mUserType;
-  
+  private String mUsername;
+  private String mPassword;
 
   /** Creates a User. */
   /** This should only be used by a Database to create a User object as only the Database should specify userid
@@ -25,7 +26,7 @@ public class User {
    */
   public User(String name, String phone, String mobile, String email, 
               Address billingAddr, Address shippingAddr, CreditCard creditCard, int userId, 
-              int userType) {
+              int userType,String username, String password) {
     mName = name;
     mPhone = phone;
     mMobile = mobile;
@@ -37,12 +38,14 @@ public class User {
     mUserType = userType;
     mCurrentRentals = new ArrayList<Item>();
     mPastTransactions = new ArrayList<Transaction>();
+    mUsername = username;
+    mPassword = password;
   }
   
 
     public User(String name, String phone, String mobile, String email, 
               Address billingAddr, Address shippingAddr, CreditCard creditCard, 
-              int userType) {
+              int userType,String username, String password) {
     mName = name;
     mPhone = phone;
     mMobile = mobile;
@@ -54,6 +57,8 @@ public class User {
     mUserType = userType;
     mCurrentRentals = new ArrayList<Item>();
     mPastTransactions = new ArrayList<Transaction>();
+    mUsername = username;
+    mPassword = password;
   }
   
   /** Creates a user. */
@@ -177,5 +182,14 @@ public class User {
   public void setType(int userType) {
     mUserType = userType;
   }
+  
+  public String getUsername(){
+   return mUsername;   
+  }
+  
+  public String getPassword(){
+      return mPassword;
+  }
+  
 }
   
