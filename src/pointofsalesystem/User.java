@@ -37,7 +37,7 @@ public class User {
     mUserID = userId;
     mUserType = userType;
     mCurrentRentals = new ArrayList<Item>();
-    mPastTransactions = new ArrayList<Transaction>();
+    mPastTransactions = null;
     mUsername = username;
     mPassword = password;
   }
@@ -56,7 +56,7 @@ public class User {
     mUserID = -1; //default userid
     mUserType = userType;
     mCurrentRentals = new ArrayList<Item>();
-    mPastTransactions = new ArrayList<Transaction>();
+    mPastTransactions = null;
     mUsername = username;
     mPassword = password;
   }
@@ -68,6 +68,9 @@ public class User {
   
   /** Adds a transaction to the user account. */
   public void addTransaction(Transaction trans) {
+      if(mPastTransactions == null) {
+        mPastTransactions = new ArrayList<Transaction>();
+      }
     mPastTransactions.add(trans);
   }
   
@@ -83,6 +86,9 @@ public class User {
   
   /** Returns user's past transactions. */
   public ArrayList<Transaction> getPastTransactions() {
+       if(mPastTransactions == null) {
+        mPastTransactions = new ArrayList<Transaction>();
+      }
     return mPastTransactions;
 
 

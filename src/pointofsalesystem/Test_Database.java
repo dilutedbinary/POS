@@ -10,12 +10,14 @@ class Test_Database {
 		System.out.println("Authenticate User:" + testdb.authenticateUser("jfc216", "abc123"));
 		testdb.updateCache();
 		//Create new Users
-		Address addr1 = new Address("123 Sunshine Lane","","Townville","123456");
+		/*Address addr1 = new Address("123 Sunshine Lane","","Townville","123456");
 		Address addr2 = new Address("51 Montclair","","Townville","123456");
 		CreditCard credcard = new CreditCard("5424123412341234", "Miles Zwicky","03","18","354");
 		
 		User u1 = new User("TestCustomer","5553141234","5551239876","adfsd@gmail.com",addr1,addr1,credcard,11,1);
-		User u2 = new User("TestCashier","5554969745","5554969745","cashier@gmail.com",addr1,addr1,credcard,21,1);
+		User u2 = new User("TestCashier","5554969745","5554969745","cashier@gmail.com",addr1,addr1,credcard,21,1);*/
+                User u1 = testdb.getUser(1);
+                User u2 = testdb.getUser(11);
 		
 		Transaction my_trans = new Transaction(u1,u2);
 		

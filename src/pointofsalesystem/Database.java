@@ -607,7 +607,51 @@ public class Database {
     	return;
     }
     
-
+    /**
+     * Returns an ArrayList of all Transactions where the passed in userid was the recorded customer
+     * 
+     * 
+     * @param userid Userid of the customer whose transactions we are retreiving
+     * @return ArrayList of Transactions associted with the given user, null if the operation fails or it the user is not found
+     */
+    public ArrayList<Transaction> getUserTransactions(int userid) {
+        //TODO: Add permission checking things here
+        
+        //Establish a connection to the database
+    	if (!this.connect()) {
+    		return null;
+    	}
+        //First build a list of transaction ids we'll need to look up
+        try{
+	    //Query the database for the transaction ascociated with the transaction id
+    		String query = "SELECT * FROM transaction WHERE customer_id = ?";
+    		preStatement = conn.prepareStatement(query);
+    		preStatement.setInt(1,userid);
+    		rs = preStatement.executeQuery();
+                ArrayList<Integer> transaction_ids = new ArrayList();
+                while(rs.next()) {
+                    int tid = rs.getInt("Transaction_id");
+                    transaction_ids.add(tid);
+                }
+             //Now lookup all these transactions from the database
+                ArrayList<Transaction> transactions = new ArrayList();
+                
+                for(int i = 0; i < transaction_ids.size(); i++){
+                    transactions.add(getTransactionInfo(transaction_ids.get(i)));
+                }
+                this.disconnect();  //to be safe
+                return transactions;
+        }
+                catch (SQLException ex) {
+    		System.out.println("Error in Database.getTransactionInfo!!");
+    		System.out.println("SQLException: " + ex.getMessage());
+    		System.out.println("SQLState: " + ex.getSQLState());
+    		System.out.println("VendorError: " + ex.getErrorCode());
+    		this.disconnect();
+    	}
+    	return null;
+    }
+    
     
     /**
      * Returns information about the specified Transaction
@@ -694,11 +738,6 @@ public class Database {
     	if (!this.connect()) {
     		return -1;
     	}
-
-        if(this.usertype >= u.getType() && this.usertype != 0) {
-         System.out.println("Warning in Database.storeUser - Invalid permission to create a new user of this type");   
-        return -1;
-        }
         
     	try{
 	    //First make sure the user isn't already saved in the data
@@ -835,8 +874,10 @@ public class Database {
         }
         
 	 if (!this.connect()) {
+             
     		return null;
     	}
+         
          
          try{
 	    //Query the database for the transaction ascociated with the transaction id
@@ -856,11 +897,21 @@ public class Database {
                 String mobile_phone = rs.getString("MOBILE_PHONE");
 
 	    //Now we need to get the addresses, credit card, and transactions associated with this user
-                CreditCard cred =(CreditCard) this.getCreditCard(userid).get(0);
+                ArrayList<CreditCard> creditcards = this.getCreditCard(userid);
+                 CreditCard cred = null;
+                if(creditcards != null && creditcards.size() != 0){
+                    cred =(CreditCard) this.getCreditCard(userid).get(0);
+                }
+                Address addr1 = null;
+                Address addr2 = null;
                 Address[] addresses = this.getAddress(userid);
-                
-                User got_user = new User(name,home_phone,mobile_phone,email,addresses[0],addresses[1],cred,userid,user_type,username,passwd);
+                if(addresses != null && addresses.length == 2){
+                    addr1 = addresses[0];
+                    addr2 = addresses[1];
+                }
 
+                User got_user = new User(name,home_phone,mobile_phone,email,addr1,addr2,cred,userid,user_type,username,passwd);
+ 
     		this.disconnect();
     		return got_user;
 
@@ -886,6 +937,8 @@ public class Database {
          if (!this.connect()) {
     		return null;
     	}
+       
+         
          try{
              Address shipping = null;
              Address billing = null;
@@ -945,10 +998,15 @@ public class Database {
      * @return true if the user was sucessfully removed, false otherwise
      */
     public boolean deleteUser(int userid){
+           if(this.usertype >= userid && this.usertype != 0) {
+            System.out.println("Warning in Database.deleteUser - Invalid permission to delete User");   
+            return false;
+        }
+        
     	if (!this.connect()) {
     		return false;
     	}
-
+        
     	try{ 
 	    //Delete the person from the person table
     		String query = "DELETE FROM person WHERE person_id=?";

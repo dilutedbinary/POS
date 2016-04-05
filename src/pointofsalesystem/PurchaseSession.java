@@ -15,18 +15,14 @@ public class PurchaseSession {
     public PurchaseSession(String userID, String password) {
       mUserID = userID;
       mPassword = password;
-      newTransaction(); //TODO: CHANGE THIS ONCE USERS HAVE BEEN IMPLEMENTED - Also might want to have the UI have a button to wipe the current transaction and create a new one
+      mDB = new Database(userID,password);
+      newTransaction(1,21); //TODO: ADD A WAY TO PASS IN CASHIER AND CUSTOMER IDS - Also might want to have the UI have a button to wipe the current transaction and create a new one
     }
     
-        //TODO: CHANGE THIS ONCE WE HAVE USERS IMPLEMENTED
-    public void newTransaction() {
-		//Create new Users
-		Address addr1 = new Address("123 Sunshine Lane","","Townville","123456");
-		Address addr2 = new Address("51 Montclair","","Townville","123456");
-		CreditCard credcard = null;
-		
-		User u1 = new User("TestCustomer","5553141234","5551239876","adfsd@gmail.com",addr1,addr1,credcard,11,1);
-		User u2 = new User("TestCashier","5554969745","5554969745","cashier@gmail.com",addr1,addr1,credcard,21,1);
+    public void newTransaction(int customer_id, int cashier_id) {
+
+		User u1 = mDB.getUser(customer_id);
+                User u2 = mDB.getUser(cashier_id);
 		mCurrent_Transaction = new Transaction(u1,u2);
 	}
     
