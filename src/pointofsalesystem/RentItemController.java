@@ -8,14 +8,15 @@ package pointofsalesystem;
 public class RentItemController {
     
     private RentItemUI rentUI;
-    private RentItemSession rentSession;
+    private PurchaseSession rentSession;
     private String returnDate;
     
     
-    public RentItemController(RentItemSession rs){
+    public RentItemController(PurchaseSession ps){
         rentUI = new RentItemUI(this);
-        rentUI.run();
-        rentSession = rs;
+        rentUI.setVisible(true);
+        //rentUI.run();
+        rentSession = ps;
     }
     
     public Quadruple addItem(String itemIDString) {
@@ -34,11 +35,11 @@ public class RentItemController {
     }
     
     public void checkout() {
-		rentSession.checkout(userID); //TODO: CHANGE THIS NOT TO ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
+		//rentSession.checkout(userID); //TODO: CHANGE THIS NOT TO ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
 		//Create a new POS Contrller to wipe the screen - WARNING: THIS IS A TERRIBLE MEMORY LEAK RIGHT NOW
-		PurchaseSession newSession = new PurchaseSession(userID,password);
+		//PurchaseSession newSession = new PurchaseSession(userID,password);
 		rentUI.setVisible(false);
-		PointOfSaleController newController = new PointOfSaleController(userID,password,newSession);
+		//PointOfSaleController newController = new PointOfSaleController(userID,password,newSession);
 	}
     public void removeItem(int itemID){
         //idk man
