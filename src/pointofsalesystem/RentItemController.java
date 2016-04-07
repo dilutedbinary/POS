@@ -18,7 +18,7 @@ public class RentItemController {
         rentSession = rs;
     }
     
-    public Triplet addItem(String itemIDString) {
+    public Quadruple addItem(String itemIDString) {
 	return rentSession.addItem(Integer.parseInt(itemIDString));
 }  
     public double getTotal(){
