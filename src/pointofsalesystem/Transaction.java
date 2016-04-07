@@ -96,6 +96,10 @@ public class Transaction {
     }
     //TODO: insert item into arraylist
     public void addItem(Triplet<Item, Integer, Integer> t){
+        if (t.getA().getRentalPeriod() > 0){
+            RentalCalculatorInterface r = new RentalCalculatorInterface();
+            t.getA().setPrice(r.calculateCost(t.getA()));
+        }
 	if(mTripleList == null){
 	    mTripleList = new ArrayList<Triplet<Item,Integer, Integer>>();
 	}

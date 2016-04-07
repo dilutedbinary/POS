@@ -6,15 +6,20 @@ public class Item {
     private int mTax_Type;
     private String mDescription;
     private double mPrice;
+    private int mRentalPeriod;
 
-    public Item(int mID, String mName, double mPrice, int mTax_Type, String mDescription){
+    public Item(int mID, String mName, double mPrice, int mTax_Type, String mDescription, int mRentalPeriod){
 	setID(mID);
 	setName(mName);
 	setTaxType(mTax_Type);
 	setDescription(mDescription);
 	setPrice(mPrice);
+        setRentalPeriod(mRentalPeriod);
     }
 	
+    public void setRentalPeriod(int mRentalPeriod){
+        this.mRentalPeriod = mRentalPeriod;
+    }
     public void setPrice(double mPrice){
 	this.mPrice = mPrice;
     }
@@ -35,6 +40,9 @@ public class Item {
 	this.mTax_Type = mTax_Type;
     }
 	
+    public int getRentalPeriod(){
+        return this.mRentalPeriod;
+    }
     public int getID(){
 	return this.mID;
     }
