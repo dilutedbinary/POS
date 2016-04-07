@@ -42,7 +42,16 @@ public class PurchaseSession {
     /** Adds an item to the current transaction. */
     public Triplet<Item, Integer, Integer> addItem(int id){
       Item item = mDB.getItemInfo(id);
-      Triplet<Item, Integer, Integer> t = new Triplet<Item, Integer, Integer>(item, 1, 1);
+      Triplet<Item, Integer, Integer> t;
+      if((item.getRentalPeriod()) > 0) {
+        t = new Triplet<Item, Integer, Integer>(item, 1, 1);
+      }
+      else if (item.getRentalPeriod() == 0) {
+        t = new Triplet<Item, Integer, Integer>(item, 1, 0);
+      }
+      else {
+          t = new Triplet<Item, Integer, Integer>(item, 1, 2);
+      }
       mCurrent_Transaction.addItem(t);
       return t;
     }

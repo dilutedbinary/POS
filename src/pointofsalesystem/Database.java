@@ -326,9 +326,10 @@ public class Database {
 			int tax_type = Integer.parseInt(rs.getString("TAX_TYPE"));
 			double price = Double.parseDouble(rs.getString("PRICE"));
 			String desc = rs.getString("DESCRIPTION");
+                        int period = Integer.parseInt(rs.getString("PERIOD"));
 
 	    //Create an Item object with the values from the Database and return
-			Item i = new Item(itemID, name, price, tax_type, desc);
+			Item i = new Item(itemID, name, price, tax_type, desc, period);
 
 			this.disconnect();
 			return i;
@@ -375,9 +376,10 @@ public class Database {
     		int tax_type = Integer.parseInt(rs.getString("TAX_TYPE"));
     		double price = Double.parseDouble(rs.getString("PRICE"));
     		String desc = rs.getString("DESCRIPTION");
+                int period = Integer.parseInt(rs.getString("PERIOD"));
 
 			    //Create an Item object with the values from the Database and return
-    		Item i = new Item(itemID, name, price, tax_type, desc);
+    		Item i = new Item(itemID, name, price, tax_type, desc, period);
 
 
     		return i;
@@ -1094,13 +1096,15 @@ public class Database {
     		String name;
     		int tax_type;
     		int itemCount = 0;
+                int period;
     		while (rs.next()) {
     			item_id = rs.getInt("ITEM_ID");
     			price = rs.getDouble("PRICE");
     			tax_type = rs.getInt("TAX_TYPE");
     			description = rs.getString("DESCRIPTION");
     			name = rs.getString("NAME");
-    			cache.addItem(new Item(item_id, name, price, tax_type, description));
+                        period = rs.getInt("PERIOD");
+    			cache.addItem(new Item(item_id, name, price, tax_type, description, period));
     			itemCount++;
     		}
     		this.disconnect();

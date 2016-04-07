@@ -35,7 +35,7 @@ class Test_Database {
 		int amounOfItem1 = testdb.getStock(i1.getID()); 
 		System.out.println(amounOfItem1+" in stock...\n\n");
 		//public void addItem(Triplet<Item, Integer, Integer> t){
-		//Package the items in triplets
+		//Package the items in Triplets
 		Triplet<Item,Integer,Integer> trip1 = new Triplet(i1,4,0);
 		Triplet<Item,Integer,Integer> trip2 = new Triplet(i2,2,0);
 		Triplet<Item,Integer,Integer> trip3 = new Triplet(i3,1,0);

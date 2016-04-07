@@ -11,10 +11,12 @@
     <property name="src.dir"     value="src/pointofsalesystem"/>
     <property name="cc.dir"      value="src/creditcardauthenticator"/>
     <property name="tax.dir"     value="src/taxcalculator"/>
+    <property name="rental.dir" value=  "src/rentalcalculator"/>
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="ccclasses.dir" value = "${build.dir}/ccclasses"/>
     <property name="taxclasses.dir" value= "${build.dir}/taxclasses"/>
+    <property name="rentalclasses.dir" value= "${build.dir}/rentalclasses" />
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir" value="lib"/>
     <property name="main-class"  value="pointofsalesystem.PointOfSaleSystem"/>
@@ -29,13 +31,16 @@
     <target name="compilelibs">
         <mkdir dir="${ccclasses.dir}"/>
         <mkdir dir="${taxclasses.dir}"/>
+        <mkdir dir="${rentalclasses.dir}" />
         <javac srcdir="${cc.dir}" destdir="${ccclasses.dir}" classpathref="classpath"/>
         <javac srcdir="${tax.dir}" destdir="${taxclasses.dir}" classpathref="classpath"/>
+        <javac srcdir="${rental.dir}" destdir="${rentalclasses.dir}" classpathref="classpath"/>
     </target>
 
     <target name="jarlibs" depends="compilelibs">
         <jar destfile="${lib.dir}/creditcardauthenticator.jar" basedir="${ccclasses.dir}"/>
         <jar destfile="${lib.dir}/taxcalculator.jar" basedir="${taxclasses.dir}"/>
+        <jar destfile="${lib.dir}/rentalcalculator.jar" basedir="${rentalclasses.dir}" />
     </target>
 
 <target name="compile" depends = "jarlibs">
