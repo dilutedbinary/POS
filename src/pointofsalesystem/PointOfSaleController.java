@@ -67,9 +67,9 @@ public class PointOfSaleController {
   */
 
 
-public Triplet addItem(String itemIDString) {
+    public Triplet addItem(String itemIDString) {
 	return model.addItem(Integer.parseInt(itemIDString));
-}  
+    }  
     public double getTotal(){
         return model.getTotal();
     }

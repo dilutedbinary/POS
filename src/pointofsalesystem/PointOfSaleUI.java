@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class PointOfSaleUI extends javax.swing.JFrame {
     DefaultTableModel modelT;
     private PointOfSaleController posController;
+    private int lineItemSelected; //to be used to change purchase/rent/return
     
     /**
      * Creates new form PointOfSaleUI
@@ -96,6 +97,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         purchaseItemButton.setText("Purchase Item");
 
         rentItemButton.setText("Rent Item");
+        rentItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rentItemButtonActionPerformed(evt);
+            }
+        });
 
         removeItemButton1.setText("Return Item");
 
@@ -129,7 +135,13 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             }
         });
         lineItemTable.setColumnSelectionAllowed(true);
+        lineItemTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lineItemTable.getTableHeader().setReorderingAllowed(false);
+        lineItemTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lineItemTableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(lineItemTable);
         lineItemTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (lineItemTable.getColumnModel().getColumnCount() > 0) {
@@ -206,8 +218,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(totalLabel)
                                         .addGap(18, 18, 18)
-                                        .addComponent(TotalField, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(303, 303, 303))
+                                        .addComponent(TotalField, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -226,8 +237,8 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cashierIDLable, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(cashierIDLable, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,6 +348,37 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         posController.checkout();
     }//GEN-LAST:event_checkoutButtonActionPerformed
 
+    private void lineItemTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineItemTableMousePressed
+        // TODO add your handling code here:
+        int[] selected = lineItemTable.getSelectedRows();
+        if(selected.length==1){
+            int temp = selected[0];
+            lineItemSelected = temp;
+        }else{
+            return;
+        }
+    }//GEN-LAST:event_lineItemTableMousePressed
+
+    private void rentItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentItemButtonActionPerformed
+        // TODO add your handling code here:
+        int itemIndex = getSelectedItem();
+        if(itemIndex == -1){
+            return;
+        }
+        
+    }//GEN-LAST:event_rentItemButtonActionPerformed
+
+    private int getSelectedItem(){
+        int[] selected = lineItemTable.getSelectedRows();
+        if(selected.length==1){
+            int temp = selected[0];
+            lineItemSelected = temp;
+            return temp;
+        }else{
+            return -1;
+        }
+    }
+    
     public void displayError(String message){
         JOptionPane.showMessageDialog(null, message, "InfoBox: " + "Error", JOptionPane.INFORMATION_MESSAGE);
     }
