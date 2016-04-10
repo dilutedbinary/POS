@@ -68,6 +68,12 @@ public class PointOfSaleController {
 
 
     public Triplet addItem(String itemIDString) {
+        try{
+           return model.addItem(Integer.parseInt(itemIDString));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+        }
+        
 	return model.addItem(Integer.parseInt(itemIDString));
     }  
     public double getTotal(){
