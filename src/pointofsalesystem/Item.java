@@ -17,6 +17,15 @@ public class Item implements Serializable {
 	setPrice(mPrice);
         setRentalPeriod(mRentalPeriod);
     }
+    
+    //non rental items dont have a rental period (can delete if we decide it is mandetory.
+    public Item(int mID, String mName, double mPrice, int mTax_Type, String mDescription){
+	setID(mID);
+	setName(mName);
+	setTaxType(mTax_Type);
+	setDescription(mDescription);
+	setPrice(mPrice);
+    }
 	
     public void setRentalPeriod(int mRentalPeriod){
         this.mRentalPeriod = mRentalPeriod;

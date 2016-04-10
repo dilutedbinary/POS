@@ -1,4 +1,6 @@
-import creditcardauthenticator.CreditCard;
+package pointofsalesystem;
+
+import creditcardauthenticator.CreditCardAuthenticator;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
