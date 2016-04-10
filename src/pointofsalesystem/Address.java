@@ -1,6 +1,7 @@
 package pointofsalesystem;
+import java.io.Serializable;
 /** Class that represents a customer address. */
-public class Address {
+public class Address implements Serializable {
   
   private String mLine1;
   private String mLine2;

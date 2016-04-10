@@ -7,8 +7,9 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
+import java.io.Serializable;
 
-public class Transaction {
+public class Transaction implements Serializable{
     private int mTransactionID;
     private User mCustomer;
     private User mCashier;

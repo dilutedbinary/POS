@@ -1,5 +1,6 @@
 package pointofsalesystem;
 
+import java.io.Serializable;
 
 import creditcardauthenticator.*;
 
@@ -10,7 +11,7 @@ import creditcardauthenticator.*;
  * @since       3-22-2016
  */
 
-public class CreditCard {
+public class CreditCard implements Serializable{
 	private String cardnumber;
 	private String name;
 	private String month;

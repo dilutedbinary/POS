@@ -1,6 +1,7 @@
 package pointofsalesystem;
+import java.io.Serializable;
 
-public class Item {
+public class Item implements Serializable {
     private int mID;
     private String mName;
     private int mTax_Type;
