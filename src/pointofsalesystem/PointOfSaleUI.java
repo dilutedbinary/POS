@@ -366,6 +366,9 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             return;
         }
         
+        String message = "Renting item #"+itemIndex;
+        ErrorScreen test = new ErrorScreen(message);
+        
     }//GEN-LAST:event_rentItemButtonActionPerformed
 
     private int getSelectedItem(){
