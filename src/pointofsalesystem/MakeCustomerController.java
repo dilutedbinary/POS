@@ -13,8 +13,8 @@ public class MakeCustomerController {
     public MakeCustomerUI mcUI;
     
     public MakeCustomerController(){
-            mcUI = new MakeCustomerUI(this);
-            mcUI.run();
+            //mcUI = new MakeCustomerUI(this);
+            //mcUI.run();
     }
     
     public String getUserID(){
