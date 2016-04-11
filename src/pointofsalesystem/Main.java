@@ -1,5 +1,5 @@
 
-package ui_216;
+package pointofsalesystem;
 
 public class Main {
     public static void main(String[] args){
