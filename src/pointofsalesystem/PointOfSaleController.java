@@ -117,9 +117,10 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(days + " is not a valid number of rental days");
         }
         int test;
+    }
         
     public void addRentalItem(String itemIDString, String daysString){
-   
+        int test = -1;
         try{
            test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){
