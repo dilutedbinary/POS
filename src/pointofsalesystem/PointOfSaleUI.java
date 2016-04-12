@@ -55,7 +55,6 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         enterCustomerIDButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lineItemTable = new javax.swing.JTable();
-        selectPaymentTypeButton = new javax.swing.JButton();
         cancelSaleButton = new javax.swing.JButton();
         checkoutButton = new javax.swing.JButton();
         subtotalLabel = new javax.swing.JLabel();
@@ -103,7 +102,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             }
         });
 
-        removeItemButton1.setText("Return Item");
+        removeItemButton1.setText("Remove Item");
 
         returnItemButton.setText("Return Item");
 
@@ -151,8 +150,6 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             lineItemTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        selectPaymentTypeButton.setText("Select Payment Type");
-
         cancelSaleButton.setText("Cancel Sale");
 
         checkoutButton.setText("Checkout");
@@ -188,10 +185,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(enterCustomerIDButton))
                                         .addComponent(customerIdTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cancelSaleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(selectPaymentTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10))))
+                                    .addComponent(cancelSaleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(purchaseItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +232,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cashierIDLable, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,9 +266,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                             .addComponent(customerIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(enterCustomerIDButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114)
-                        .addComponent(selectPaymentTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(customerIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -326,11 +318,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     private void enterItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterItemButtonActionPerformed
         // when Enter is pressed
         String itemId = itemIdField.getText();      //get id entered
-        Triplet<Item,Integer,Integer> trip = posController.addItem(itemId);
-        String item_name = trip.getA().getName();
-        String price = String.valueOf(trip.getA().getPrice());
-        String qty = String.valueOf(trip.getB());
-        this.addLineItem(itemId,item_name,price,qty);
+        posController.addItem(itemId);
         this.updateTotals();
         
     }//GEN-LAST:event_enterItemButtonActionPerformed
@@ -428,6 +416,14 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         modelT.addRow(new Object[]{id, name, price, quantity});
     }
     
+    public void clearTable(){
+        int rowNumber = modelT.getRowCount();
+        for(int i = 0; i < rowNumber; i++){
+            modelT.removeRow(i);
+        }
+        
+    }
+    
     public void updateSubtotal(String subTotal){
         SubtotalField.setText(subTotal);
     }
@@ -464,7 +460,6 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     private javax.swing.JButton removeItemButton1;
     private javax.swing.JButton rentItemButton;
     private javax.swing.JButton returnItemButton;
-    private javax.swing.JButton selectPaymentTypeButton;
     private javax.swing.JLabel subtotalLabel;
     private javax.swing.JLabel taxLabel;
     private javax.swing.JLabel totalLabel;
