@@ -108,6 +108,27 @@ public class Database {
 			}
 		}
 	}
+	
+	
+	//constructor for testing the database
+    public  Database() {
+		//Load the JDBC Driver
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (Exception ex) {
+			System.out.println("Could not load MySQL JDBC Driver - do you have the .jar file set up correctly?");
+			ex.printStackTrace();
+			return;
+		}
+
+		//Connect to the database
+		if (!this.connect()) {
+			System.out.println("Error - connection Failed");
+		} 
+return;		
+
+		    
+	}
 
 
 	/**
@@ -257,7 +278,7 @@ public class Database {
 		//Close the ResultSet object
 
 		try {
-			if(!rs.isClosed()) {
+			if(rs!=null&&!rs.isClosed()) {
 				rs.close();
 			}
 		} catch (SQLException ex) {
