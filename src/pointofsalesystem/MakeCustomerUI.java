@@ -14,7 +14,15 @@ public class MakeCustomerUI extends javax.swing.JFrame {
     /**
      * Creates new form MakeCustomerUI
      */
-    public MakeCustomerUI() {
+    private MakeCustomerController controller;
+    
+    private MakeCustomerUI(){
+        
+    }
+    
+    public MakeCustomerUI(MakeCustomerController mcc) {
+        this();
+        controller = mcc;
         initComponents();
     }
 

@@ -67,37 +67,59 @@ public class PointOfSaleController {
   */
 
 
-    public Triplet addItem(String itemIDString) {
+    public void addItem(String itemIDString) {
+        int test;
+        
         try{
-           return model.addItem(Integer.parseInt(itemIDString));
+           test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-	return model.addItem(Integer.parseInt(itemIDString));
+        Triplet[] newTable = model.addItem(test);
+        populateTable(newTable);
     }
     
-    public Triplet addReturnItem(String itemIDString){
+    public void populateTable(Triplet[] newTable){
+        pos.clearTable();
+        for(int i = 0; i < newTable.length; i++){
+            String item_id = newTable[i].getA().getId();
+            String item_name = newTable[i].getA().getName();
+            String price = String.valueOf(newTable[i].getA().getPrice());
+            String qty = String.valueOf(newTable[i].getB());
+            pos.addLineItem(item_id, item_name, price, qty);
+        }
+    }
+    
+    public void addReturnItem(String itemIDString){
+       int test;
+        
         try{
-           //return model.addReturnItem(Integer.parseInt(itemIDString));
+           test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-	return model.addItem(Integer.parseInt(itemIDString));
+        Triplet[] newTable = model.addReturnItem(test);
+        populateTable(newTable);
     }
     
-    public Triplet addRentalItem(String itemIDString, int days){
+    public void addRentalItem(String itemIDString, int days){
         if(days < 1){
             ErrorScreen es = new ErrorScreen(days + " is not a valid number of rental days");
         }
+        int test;
+        
+    public void addRentalItem(String itemIDString, String daysString){
+   
         try{
-           //return model.addRentalItem(Integer.parseInt(itemIDString, days));
+           test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-	return model.addItem(Integer.parseInt(itemIDString));
+        Triplet[] newTable = model.addRentalItem(test);
+        populateTable(newTable);
     }
     
     public double getTotal(){
@@ -119,8 +141,17 @@ public class PointOfSaleController {
 		pos.setVisible(false);
 		PointOfSaleController newController = new PointOfSaleController(userID,password,newSession);
 	}
-    public void removeItem(int itemID){
-        //idk man
+    public void removeItem(String itemID){
+        int test;
+        
+        try{
+           test = (Integer.parseInt(itemID));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(itemID + " is not a number");
+        }
+        
+        Triplet[] newTable = model.removeItem(test);
+        populateTable(newTable);
     }
     
 }
