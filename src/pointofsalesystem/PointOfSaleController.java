@@ -75,7 +75,31 @@ public class PointOfSaleController {
         }
         
 	return model.addItem(Integer.parseInt(itemIDString));
-    }  
+    }
+    
+    public Triplet addReturnItem(String itemIDString){
+        try{
+           //return model.addReturnItem(Integer.parseInt(itemIDString));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+        }
+        
+	return model.addItem(Integer.parseInt(itemIDString));
+    }
+    
+    public Triplet addRentalItem(String itemIDString, int days){
+        if(days < 1){
+            ErrorScreen es = new ErrorScreen(days + " is not a valid number of rental days");
+        }
+        try{
+           //return model.addRentalItem(Integer.parseInt(itemIDString, days));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+        }
+        
+	return model.addItem(Integer.parseInt(itemIDString));
+    }
+    
     public double getTotal(){
         return model.getTotal();
     }
