@@ -13,7 +13,6 @@ public class MakeCustomerController {
     private PurchaseSession ps;
     public MakeCustomerUI mcUI;
     
-    
     public MakeCustomerController(PurchaseSession ps){
             this.ps = ps;
             mcUI = new MakeCustomerUI(this);

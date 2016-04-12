@@ -1,6 +1,8 @@
 package pointofsalesystem;
 
-public class Triplet<T, U, V> {
+import java.io.Serializable;
+
+public class Triplet<T, U, V> implements Serializable {
 	private final T a;
 	private final U b;
 	private final V c;

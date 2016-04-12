@@ -1,4 +1,4 @@
-package ui_216;
+package pointofsalesystem;
 
 public class ManagerController {
     private ManagerSessionUI MsUI;

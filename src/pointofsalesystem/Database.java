@@ -326,10 +326,11 @@ public class Database {
 			int tax_type = Integer.parseInt(rs.getString("TAX_TYPE"));
 			double price = Double.parseDouble(rs.getString("PRICE"));
 			String desc = rs.getString("DESCRIPTION");
-                        int period = Integer.parseInt(rs.getString("PERIOD"));
+			
+                        //int period = Integer.parseInt(rs.getString("PERIOD"));
 
 	    //Create an Item object with the values from the Database and return
-			Item i = new Item(itemID, name, price, tax_type, desc, period);
+			Item i = new Item(itemID, name, price, tax_type, desc);
 
 			this.disconnect();
 			return i;
