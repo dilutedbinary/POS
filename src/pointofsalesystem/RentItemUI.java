@@ -15,13 +15,22 @@ public class RentItemUI extends javax.swing.JFrame {
      * Creates new form RentItemUI
      */
     
-    private RentItemController controller;
-    
+    //private RentItemController controller;
+    private PointOfSaleController controller;
+    private String id;
+    /*
     public RentItemUI(RentItemController controller) {
         this.controller = controller;
         initComponents();
     }
-
+    */
+    
+    public RentItemUI(String itemID, PointOfSaleController controller) {
+        this.id = itemID;
+        this.controller = controller;
+        initComponents();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,18 +42,45 @@ public class RentItemUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        daysLabel = new javax.swing.JLabel();
+        daysField = new javax.swing.JTextField();
+        enterRentalItem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        daysLabel.setText("Number of Days for Rental:");
+
+        daysField.setText("##");
+
+        enterRentalItem.setText("Enter Rental");
+        enterRentalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterRentalItemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(daysLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(daysField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(enterRentalItem)
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(daysLabel)
+                    .addComponent(daysField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterRentalItem))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -66,6 +102,13 @@ public class RentItemUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enterRentalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterRentalItemActionPerformed
+        // TODO add your handling code here:
+        String days = daysField.getText();
+        controller.addRentalItem(id, days);
+        
+    }//GEN-LAST:event_enterRentalItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,6 +146,9 @@ public class RentItemUI extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField daysField;
+    private javax.swing.JLabel daysLabel;
+    private javax.swing.JButton enterRentalItem;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

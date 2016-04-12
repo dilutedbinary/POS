@@ -62,7 +62,7 @@ public class Transaction implements Serializable{
    public void setTimestamp(Timestamp timestamp) {
 	this.mTimestamp = timestamp;
    }
-
+   
    public Timestamp getTimestamp() {
 	return mTimestamp;
   }

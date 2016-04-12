@@ -110,6 +110,8 @@ public class PointOfSaleController {
         }
         int test;
         
+    public void addRentalItem(String itemIDString, String daysString){
+   
         try{
            test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){
