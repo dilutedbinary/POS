@@ -23,12 +23,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="1" pref="400" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="1" pref="502" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jScrollPane1" min="-2" pref="441" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -48,14 +51,48 @@
                               <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                               <Component id="title" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="nameField" min="-2" pref="77" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="createCutomerButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="emailLabel" min="-2" max="-2" attributes="0"/>
+                                              <Component id="shipAddressLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Component id="phoneLabel" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="mobileLabel" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="billAddressLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="usernameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="nameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="passwordLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="password2Label" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="nameField" min="-2" pref="77" max="-2" attributes="0"/>
+                                      <Component id="mobileField" min="-2" max="-2" attributes="0"/>
+                                      <Component id="emailField" min="-2" max="-2" attributes="0"/>
+                                      <Component id="phoneField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="shipAddressField" min="-2" max="-2" attributes="0"/>
+                                      <Component id="billingAddressField" min="-2" max="-2" attributes="0"/>
+                                      <Component id="usernameField" min="-2" max="-2" attributes="0"/>
+                                      <Component id="password1Field" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="password2Field" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="218" max="32767" attributes="0"/>
+                      <EmptySpace pref="216" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -69,7 +106,49 @@
                           <Component id="nameField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="218" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="phoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="phoneField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="mobileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mobileField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="emailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="emailField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="shipAddressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="shipAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="billingAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="billAddressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="usernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usernameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="password1Field" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="password2Field" min="-2" max="-2" attributes="0"/>
+                          <Component id="password2Label" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="createCutomerButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -88,6 +167,91 @@
             <Component class="javax.swing.JLabel" name="nameLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Name:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="phoneLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Phone #:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="phoneField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="##########"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="mobileLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mobile #:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="mobileField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="##########"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="emailLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Email:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="emailField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="myemail@email.com"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="shipAddressLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Shipping Address:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="shipAddressField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="shipping address"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="billAddressLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Billing Address:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="billingAddressField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="billing address"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="usernameLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Username:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="usernameField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="username"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="password1Field">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="passwordLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enter Password:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="password2Field">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="password2Label">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Re-Enter Password:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="createCutomerButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create Customer"/>
               </Properties>
             </Component>
           </SubComponents>

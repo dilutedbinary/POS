@@ -13,8 +13,8 @@ public class CheckOutScreenController {
     
     public CheckOutScreenController(PurchaseSession ps){
         this.ps = ps;
-        coUI = new CheckOutScreenUI(this);
-        coUI.run();
+        //coUI = new CheckOutScreenUI(this);
+        //coUI.run();
         
     }
     
