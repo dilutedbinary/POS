@@ -10,18 +10,21 @@ public class MakeCustomerController {
 
     private String userID;
     private String userPassword;
+    private PurchaseSession ps;
     public MakeCustomerUI mcUI;
     
-    public MakeCustomerController(){
+    
+    public MakeCustomerController(PurchaseSession ps){
+            this.ps = ps;
             mcUI = new MakeCustomerUI(this);
             mcUI.run();
     }
     
-    public String getUserID(){
-        return userID;
+    public void AddUserID(){
+        ps.AddUID(userID);
     }
     
-    public String getUserPassword(){
-        return userPassword;
+    public void AddUserPassword(){
+        return ps.AddUP(userPassword);
     }
 }
