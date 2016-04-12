@@ -361,13 +361,16 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
     private void rentItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentItemButtonActionPerformed
         // TODO add your handling code here:
-        int itemIndex = getSelectedItem();
-        if(itemIndex == -1){
-            return;
-        }
+//        int itemIndex = getSelectedItem();
+//        if(itemIndex == -1){
+//            return;
+//        }
+//        
+//        String message = "Renting item #"+itemIndex;
+//        ErrorScreen test = new ErrorScreen(message);
+        String itemId = itemIdField.getText();      //get id entered
         
-        String message = "Renting item #"+itemIndex;
-        ErrorScreen test = new ErrorScreen(message);
+        RentItemUI rentUI = new RentItemUI(itemId, posController);
         
     }//GEN-LAST:event_rentItemButtonActionPerformed
 

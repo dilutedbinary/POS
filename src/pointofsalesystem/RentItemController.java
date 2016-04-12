@@ -13,7 +13,7 @@ public class RentItemController {
     
     
     public RentItemController(PurchaseSession ps){
-        rentUI = new RentItemUI(this);
+        //rentUI = new RentItemUI(this);
         rentUI.setVisible(true);
         //rentUI.run();
         rentSession = ps;
