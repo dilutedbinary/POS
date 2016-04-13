@@ -66,9 +66,17 @@ public class PointOfSaleController {
     }
   */
 
+    public void createCustomer(String name, String phone, String mobile, String shipAdd, String billAdd, String creditcardString, String username, String password1, String password2){
+        //call method in session to add to database and return ID number
+        int idNum = 696969;
+        //validation!!!
+        String message = "New Customer created with id#: "+idNum;
+        AlertScreen al = new AlertScreen(message);
+    }
+    
 
     public void addItem(String itemIDString) {
-        int test;
+        int test=0;
         
         try{
            test = (Integer.parseInt(itemIDString));
@@ -76,7 +84,9 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-        Triplet[] newTable = model.addItem(test);
+        Triplet balls = model.addItem(test);
+        
+        Triplet[] newTable = model.getLineItems();
         populateTable(newTable);
     }
     
@@ -109,9 +119,10 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(days + " is not a valid number of rental days");
         }
         int test;
+    }
         
     public void addRentalItem(String itemIDString, String daysString){
-   
+        int test = -1;
         try{
            test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){

@@ -138,16 +138,37 @@ public class Transaction implements Serializable{
 		return bd.doubleValue();
 	}
     
-    public String toString(){
+    public String toString(String myid){
     	StringBuilder s = new StringBuilder();
-   		s.append(Integer.toString(getCashier().getId()) + "\n" + "Name | Price | Qty |\n");
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+    	s.append("$crumDogBillionairesPOS\n\n");
+    	s.append(dateFormat.format(date) + "\n\n");
+   		s.append("\tName\t|\tPrice\t|\tQty\t|\tType\t\n");
     	for(int i = 0; i < mTripleList.size(); i++){
-    		s.append("\n" + mTripleList.get(i).getA().getName() + " " + mTripleList.get(i).getA().getPrice() 
-    				+ "  x" + Integer.toString(mTripleList.get(i).getB())+ "\n\n");
-    	}
-    	s.append("SubTotal: $" + Double.toString(calculateSubTotal()) + "\nTax: $" + Double.toString(getTax()) 
-    				+ "\nTotal: $" + Double.toString(calculateTotal()) + "\n");
+    		s.append("\n\t" + mTripleList.get(i).getA().getName() + "\t\t" + mTripleList.get(i).getA().getPrice() 
+    				+ "\t\tx" + Integer.toString(mTripleList.get(i).getB()));
+                
+                switch(mTripleList.get(i).getC()) {
+                    case -1:
+                        s.append("\t\t RETURN\t");
+                        break;
+                    case 0:
+                        s.append("\t\t SALE\t");
+                        break;
+                    case 1:
+                        s.append("\t\t RENTAL\t");
+                        break;
+                    default:
+                        break;
+                }
+                           
+        }
+    	s.append("\n\nSubTotal: $" + Double.toString(calculateSubTotal()) + "\nTax: $" + Double.toString(getTax()) 
+    				+ "\nTotal: $" + Double.toString(calculateTotal()) + "\n\n");
     	
+    	s.append("Cashier:" + myid + "\n\n");
+    	s.append("HAVE  A GREAT DAY!");
     	return s.toString();
     }
     

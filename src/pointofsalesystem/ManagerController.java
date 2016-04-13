@@ -58,6 +58,13 @@ public class ManagerController {
     }
     
     // balls balls balls
+    public void createCashier(String name, String phone, String mobile, String shipAdd, String billAdd, String creditcardString, String username, String password1, String password2){
+        //call method in session to add to database and return ID number
+        int idNum = 696969;
+        //validation!!!
+        String message = "New Cashier created with id#: "+idNum;
+        AlertScreen al = new AlertScreen(message);
+    }
     
     
 }

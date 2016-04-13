@@ -14,16 +14,16 @@ public class MakeCustomerController {
     public MakeCustomerUI mcUI;
     
     public MakeCustomerController(PurchaseSession ps){
-            this.ps = ps;
-            mcUI = new MakeCustomerUI(this);
-            mcUI.run();
+//            this.ps = ps;
+//            mcUI = new MakeCustomerUI(this);
+//            mcUI.run();
     }
     
     public void AddUserID(){
-        ps.AddUID(userID);
+//        ps.AddUID(userID);
     }
     
     public void AddUserPassword(){
-        return ps.AddUP(userPassword);
+//        return ps.AddUP(userPassword);
     }
 }

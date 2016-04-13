@@ -56,6 +56,11 @@ public class PurchaseSession {
       return t;
     }
     
+    public Triplet[] getLineItems(){
+        Triplet[] out = mCurrent_Transaction.getTripleList().toArray(new Triplet[mCurrent_Transaction.getTripleList().size()]);
+        return out;
+    }
+    
     /** Gets the total of the transaction. */
     public double getTotal(){
       return mCurrent_Transaction.calculateTotal();
