@@ -88,7 +88,7 @@ public class PurchaseSession {
 		mDB.saveTransaction(mCurrent_Transaction);
 		//Write this stuff to a text file
 		//Putting it in a try statment will automatically close it after finishing(Java 7 or later)
-		try(PrintWriter out = new PrintWriter("receipt.txt")) {
+		try(PrintWriter out = new PrintWriter("receipt.txt : "+System.currentTimeMillis())) {
 		out.println(mCurrent_Transaction.deprecatedtoString(tempID));
 	} catch(java.io.FileNotFoundException ex) {
 		System.out.println("ERROR - Could not print receipt to file!!");
