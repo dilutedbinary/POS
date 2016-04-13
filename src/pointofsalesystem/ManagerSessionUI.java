@@ -44,6 +44,7 @@ public class ManagerSessionUI extends javax.swing.JFrame {
         newProductButton = new javax.swing.JButton();
         updateProductButton = new javax.swing.JButton();
         productIDField = new javax.swing.JTextField();
+        addCasheir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,17 +69,27 @@ public class ManagerSessionUI extends javax.swing.JFrame {
             }
         });
 
+        addCasheir.setText("Add Casheir");
+        addCasheir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCasheirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(newProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(updateProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
-                .addComponent(productIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addCasheir)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(newProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(productIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(454, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,7 +102,9 @@ public class ManagerSessionUI extends javax.swing.JFrame {
                         .addComponent(newProductButton)
                         .addGap(18, 18, 18)
                         .addComponent(updateProductButton)))
-                .addContainerGap(527, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(addCasheir)
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -123,6 +136,11 @@ public class ManagerSessionUI extends javax.swing.JFrame {
         String id = productIDField.getText();
         controller.updateProduct(id);
     }//GEN-LAST:event_updateProductButtonActionPerformed
+
+    private void addCasheirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCasheirActionPerformed
+        // TODO add your handling code here:
+        MakeCasheirUI mcui = new MakeCasheirUI(controller);
+    }//GEN-LAST:event_addCasheirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +179,7 @@ public class ManagerSessionUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCasheir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newProductButton;

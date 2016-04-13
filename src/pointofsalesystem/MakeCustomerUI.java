@@ -5,6 +5,8 @@
  */
 package pointofsalesystem;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Owner
@@ -24,6 +26,7 @@ public class MakeCustomerUI extends javax.swing.JFrame {
         this();
         controller = posc;
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -236,6 +239,8 @@ public class MakeCustomerUI extends javax.swing.JFrame {
         String password2 = password2Field.getText();
         
         controller.createCustomer(name, phone, mobile, shipAdd, billAdd, creditCard, username, password1, password2);
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_createCutomerButtonActionPerformed
 
     /**

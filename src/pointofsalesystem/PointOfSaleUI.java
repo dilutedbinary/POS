@@ -65,6 +65,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         totalLabel = new javax.swing.JLabel();
         cashierID = new javax.swing.JLabel();
         cashierIDLable = new javax.swing.JLabel();
+        makeNewCustomerButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -109,6 +110,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         customerIDLabel.setText("Cutomer ID:");
 
         enterCustomerIDButton.setText("Enter Customer ID");
+        enterCustomerIDButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterCustomerIDButtonActionPerformed(evt);
+            }
+        });
 
         lineItemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -167,6 +173,13 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
         cashierID.setText("Cashier ID:");
 
+        makeNewCustomerButton.setText("Make New Customer");
+        makeNewCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeNewCustomerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -222,7 +235,10 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(enterItemIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(itemIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(itemIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(makeNewCustomerButton)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
@@ -266,7 +282,9 @@ public class PointOfSaleUI extends javax.swing.JFrame {
                             .addComponent(customerIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(enterCustomerIDButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(customerIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(makeNewCustomerButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -359,8 +377,20 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         String itemId = itemIdField.getText();      //get id entered
         
         RentItemUI rentUI = new RentItemUI(itemId, posController);
+        rentUI.setVisible(true);
         
     }//GEN-LAST:event_rentItemButtonActionPerformed
+
+    private void makeNewCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeNewCustomerButtonActionPerformed
+        // TODO add your handling code here:
+        MakeCustomerUI mcui = new MakeCustomerUI(posController);
+        mcui.setVisible(true);
+    }//GEN-LAST:event_makeNewCustomerButtonActionPerformed
+
+    private void enterCustomerIDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterCustomerIDButtonActionPerformed
+        // TODO add your handling code here:
+        posController.enterCustomerID(customerIdTextField.getText());
+    }//GEN-LAST:event_enterCustomerIDButtonActionPerformed
 
     private int getSelectedItem(){
         int[] selected = lineItemTable.getSelectedRows();
@@ -459,6 +489,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable lineItemTable;
+    private javax.swing.JButton makeNewCustomerButton;
     private javax.swing.JButton purchaseItemButton;
     private javax.swing.JButton removeItemButton1;
     private javax.swing.JButton rentItemButton;

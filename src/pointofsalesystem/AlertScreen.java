@@ -5,6 +5,8 @@
  */
 package pointofsalesystem;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Billy
@@ -15,13 +17,14 @@ public class AlertScreen extends javax.swing.JFrame {
      * Creates new form AlertScreen
      */
     private AlertScreen(){
-        
+        initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public AlertScreen(String message) {
         this();
         alertMessage.setText(message);
-        initComponents();
+        
     }
 
     /**
