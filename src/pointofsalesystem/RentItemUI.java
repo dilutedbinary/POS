@@ -5,6 +5,8 @@
  */
 package pointofsalesystem;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Owner
@@ -29,6 +31,7 @@ public class RentItemUI extends javax.swing.JFrame {
         this.id = itemID;
         this.controller = controller;
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     /**
@@ -108,6 +111,8 @@ public class RentItemUI extends javax.swing.JFrame {
         String days = daysField.getText();
         //controller.addRentalItem(id, days);
         
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_enterRentalItemActionPerformed
 
     /**

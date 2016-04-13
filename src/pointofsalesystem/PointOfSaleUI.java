@@ -359,6 +359,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         String itemId = itemIdField.getText();      //get id entered
         
         RentItemUI rentUI = new RentItemUI(itemId, posController);
+        rentUI.setVisible(true);
         
     }//GEN-LAST:event_rentItemButtonActionPerformed
 
