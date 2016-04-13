@@ -110,6 +110,8 @@ public class PointOfSaleController {
         }
     }
     
+
+    
 //    public void addReturnItem(String itemIDString){
 //       int test;
 //        
@@ -154,8 +156,13 @@ public class PointOfSaleController {
         return model.getTax();
     }
     
+    public void preCheckout(){
+        model.preCheckout(userID);
+    }
+    
     public void checkout() {
-		model.checkout(userID); //TODO: CHANGE THIS NOT TO ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
+		model.preCheckout(userID); //TODO: CHANGE THIS NOT TO ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
+                
 		//Create a new POS Contrller to wipe the screen - WARNING: THIS IS A TERRIBLE MEMORY LEAK RIGHT NOW
 		PurchaseSession newSession = new PurchaseSession(userID,password);
 		pos.setVisible(false);

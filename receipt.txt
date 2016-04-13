@@ -1,6 +1,6 @@
 $crumDogBillionairesPOS
 
-2016/04/05 11:00:59
+2016/04/12 22:32:49
 
 Name | Price | Qty |
 
@@ -10,6 +10,6 @@ SubTotal: $6.32
 Tax: $0.44
 Total: $6.76
 
-Cashier:ddff
+Cashier:User ID
 
 HAVE  A GREAT DAY!

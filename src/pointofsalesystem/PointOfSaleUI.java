@@ -333,7 +333,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     }
 
     private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutButtonActionPerformed
-        posController.checkout();
+        posController.preCheckout();
     }//GEN-LAST:event_checkoutButtonActionPerformed
 
     private void lineItemTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineItemTableMousePressed

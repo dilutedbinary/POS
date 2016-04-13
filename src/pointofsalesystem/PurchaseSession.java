@@ -79,7 +79,9 @@ public class PurchaseSession {
     public String getCashierID(){
     	return mUserID;
     }
-    
+    public void preCheckout(String tempID){
+        CheckOutScreenController coController = new CheckOutScreenController(this, tempID);
+    }
     //TODO: CHANGE THIS TO NOT ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
     public void checkout(String tempID) {  
 		//Save the transaction to the Database
@@ -91,6 +93,7 @@ public class PurchaseSession {
 	} catch(java.io.FileNotFoundException ex) {
 		System.out.println("ERROR - Could not print receipt to file!!");
 	}
+                
 	}
 }
 
