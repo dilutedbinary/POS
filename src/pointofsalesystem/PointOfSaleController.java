@@ -174,5 +174,15 @@ public class PointOfSaleController {
 //        Triplet[] newTable = model.removeItem(test);
 //        populateTable(newTable);
 //    }
+
+    void enterCustomerID(String idString) {
+        int id = 0;
+        try{
+            id = Integer.parseInt(idString);
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(idString + " is not a number");
+        }
+        //pass customer Id to session
+    }
     
 }

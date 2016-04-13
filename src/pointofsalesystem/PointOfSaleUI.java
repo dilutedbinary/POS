@@ -110,6 +110,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         customerIDLabel.setText("Cutomer ID:");
 
         enterCustomerIDButton.setText("Enter Customer ID");
+        enterCustomerIDButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterCustomerIDButtonActionPerformed(evt);
+            }
+        });
 
         lineItemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -381,6 +386,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         MakeCustomerUI mcui = new MakeCustomerUI(posController);
         mcui.setVisible(true);
     }//GEN-LAST:event_makeNewCustomerButtonActionPerformed
+
+    private void enterCustomerIDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterCustomerIDButtonActionPerformed
+        // TODO add your handling code here:
+        posController.enterCustomerID(customerIdTextField.getText());
+    }//GEN-LAST:event_enterCustomerIDButtonActionPerformed
 
     private int getSelectedItem(){
         int[] selected = lineItemTable.getSelectedRows();
