@@ -13,9 +13,30 @@ public class CheckOutScreenController {
     
     public CheckOutScreenController(PurchaseSession ps){
         this.ps = ps;
-        //coUI = new CheckOutScreenUI(this);
-        //coUI.run();
+        coUI = new CheckOutScreenUI(this);
+        coUI.setVisible(true);
         
     }
     
+    public boolean verifyCreditCard(String cardNumber){
+            int test;
+        try{
+           test = (Integer.parseInt(cardNumber));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(cardNumber + " is not a number");
+        }
+        //return ps.verifyCreditCard(test);
+        return true;
+    }
+    
+    public double getChange(String cash){
+            int test;
+        try{
+           test = (Integer.parseInt(cash));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(cash + " is not a number");
+        }
+        //return ps.getChange(test);
+        return 1.00;
+    }
 }
