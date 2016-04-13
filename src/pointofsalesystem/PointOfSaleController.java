@@ -72,6 +72,7 @@ public class PointOfSaleController {
         //validation!!!
         String message = "New Customer created with id#: "+idNum;
         AlertScreen al = new AlertScreen(message);
+        al.setVisible(true);
     }
     
 
