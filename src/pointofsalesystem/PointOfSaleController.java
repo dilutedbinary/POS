@@ -93,9 +93,16 @@ public class PointOfSaleController {
     public void populateTable(Triplet[] newTable){
         pos.clearTable();
         for(int i = 0; i < newTable.length; i++){
+            Item balls = (Item)newTable[i].getA();
+            int item_id = balls.getID();
+            String item_name = balls.getName();
+            double price = balls.getPrice();
+            
+            /*
             String item_id = newTable[i].getA().getId();
             String item_name = newTable[i].getA().getName();
             String price = String.valueOf(newTable[i].getA().getPrice());
+*/
             String qty = String.valueOf(newTable[i].getB());
             pos.addLineItem(item_id, item_name, price, qty);
         }
