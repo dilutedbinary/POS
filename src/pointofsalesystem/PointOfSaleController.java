@@ -76,7 +76,7 @@ public class PointOfSaleController {
     
 
     public void addItem(String itemIDString) {
-        int test;
+        int test=0;
         
         try{
            test = (Integer.parseInt(itemIDString));
@@ -84,7 +84,9 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-        Triplet[] newTable = model.addItem(test);
+        Triplet balls = model.addItem(test);
+        
+        Triplet[] newTable = model.getLineItems();
         populateTable(newTable);
     }
     
