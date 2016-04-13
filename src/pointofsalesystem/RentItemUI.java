@@ -106,7 +106,7 @@ public class RentItemUI extends javax.swing.JFrame {
     private void enterRentalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterRentalItemActionPerformed
         // TODO add your handling code here:
         String days = daysField.getText();
-        controller.addRentalItem(id, days);
+        //controller.addRentalItem(id, days);
         
     }//GEN-LAST:event_enterRentalItemActionPerformed
 
