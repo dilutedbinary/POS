@@ -116,7 +116,7 @@ public class StockCache {
 	if (index < 0) {
 	    return null;
 	}
-	return instance.stock.get(index);
+	return instance.stock.get(index).getCopy();
     }
 
     /**
