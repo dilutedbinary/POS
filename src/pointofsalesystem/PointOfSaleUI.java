@@ -109,6 +109,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         });
 
         removeItemButton1.setText("Remove Item");
+        removeItemButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeItemButton1ActionPerformed(evt);
+            }
+        });
 
         returnItemButton.setText("Return Item");
 
@@ -399,8 +404,13 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
     private void purchaseItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseItemButtonActionPerformed
         // TODO add your handling code here:
-        enterCustomerIDButtonActionPerformed(evt);
+        enterItemButtonActionPerformed(evt);
     }//GEN-LAST:event_purchaseItemButtonActionPerformed
+
+    private void removeItemButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeItemButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_removeItemButton1ActionPerformed
 
     private int getSelectedItem(){
         int[] selected = lineItemTable.getSelectedRows();
