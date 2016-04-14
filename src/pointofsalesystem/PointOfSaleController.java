@@ -104,6 +104,22 @@ public class PointOfSaleController {
             String item_name = balls.getName();
             double price = balls.getPrice();
             
+            String transaction = "";
+            int typeID = (Integer)newTable[i].getC(); 
+            if(typeID == 0){
+                //sale
+                transaction = "Sale";
+            }else if(typeID == 1){
+                //rental
+                transaction = "Rental";
+                int poop = (Integer)newTable[i].getD(); 
+                
+            }else if(typeID == 2){
+                //return
+                price *= -1;
+                transaction = "Return";
+            }
+            
             String priceS = price + "";
             String idS = item_id + "";
             /*
