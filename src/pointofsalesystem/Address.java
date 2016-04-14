@@ -10,7 +10,7 @@ public class Address implements Serializable {
   private String mZip;
   
   /** Constructor which creates a Address object. */
-  public Address(String line1, String line2, String city, String zip,String state) {
+  public Address(String line1, String line2, String city,String state, String zip) {
     mLine1 = line1;
     mLine2 = line2;
     mCity = city;

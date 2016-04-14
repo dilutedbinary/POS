@@ -772,8 +772,8 @@ return;
     		rs = preStatement.executeQuery();
     		if(rs.next()){
     			System.out.println("Warning in Database.storeUser - User already exists within Database");
-                        this.disconnect();
-    			return -1;
+                      //  this.disconnect();
+    			//return -1;
     		}
 
 	    //Since it doesn't exist within the Database we can store it within the database
@@ -796,6 +796,7 @@ return;
     		preStatement.setString(1,u.getUsername());
     		preStatement.setString(2,u.getPassword());
     		rs = preStatement.executeQuery();
+                rs.next();
     		int new_id = rs.getInt("PERSON_ID");
                 u.setId(new_id); //might as well set the id of the new user to what the database assigned it
 

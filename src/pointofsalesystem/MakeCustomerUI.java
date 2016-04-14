@@ -51,9 +51,8 @@ public class MakeCustomerUI extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         shipAddressLabel = new javax.swing.JLabel();
-        shipAddressField = new javax.swing.JTextField();
-        billAddressLabel = new javax.swing.JLabel();
-        billingAddressField = new javax.swing.JTextField();
+        ship_address_line1 = new javax.swing.JTextField();
+        ship_address_line2 = new javax.swing.JTextField();
         usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         password1Field = new javax.swing.JPasswordField();
@@ -62,7 +61,14 @@ public class MakeCustomerUI extends javax.swing.JFrame {
         password2Label = new javax.swing.JLabel();
         createCutomerButton = new javax.swing.JButton();
         creditCardLabel = new javax.swing.JLabel();
-        creditcardField1 = new javax.swing.JTextField();
+        cred_name = new javax.swing.JTextField();
+        cred_number = new javax.swing.JTextField();
+        cred_month = new javax.swing.JTextField();
+        cred_year = new javax.swing.JTextField();
+        cred_cvc = new javax.swing.JTextField();
+        ship_address_city = new javax.swing.JTextField();
+        ship_address_state = new javax.swing.JTextField();
+        ship_address_zip = new javax.swing.JTextField();
 
         creditcardField.setText("################");
 
@@ -88,11 +94,9 @@ public class MakeCustomerUI extends javax.swing.JFrame {
 
         shipAddressLabel.setText("Shipping Address:");
 
-        shipAddressField.setText("shipping address");
+        ship_address_line1.setText("line1");
 
-        billAddressLabel.setText("Billing Address:");
-
-        billingAddressField.setText("billing address");
+        ship_address_line2.setText("line2");
 
         usernameLabel.setText("Username:");
 
@@ -113,9 +117,48 @@ public class MakeCustomerUI extends javax.swing.JFrame {
             }
         });
 
-        creditCardLabel.setText("Creditcard #:");
+        creditCardLabel.setText("CreditCard:");
 
-        creditcardField1.setText("################");
+        cred_name.setText("Card Name");
+        cred_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cred_nameActionPerformed(evt);
+            }
+        });
+
+        cred_number.setText("Card Number");
+        cred_number.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cred_numberActionPerformed(evt);
+            }
+        });
+
+        cred_month.setText("Exp Month (ex 06)");
+        cred_month.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cred_monthActionPerformed(evt);
+            }
+        });
+
+        cred_year.setText("Exp Year");
+        cred_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cred_yearActionPerformed(evt);
+            }
+        });
+
+        cred_cvc.setText("Cvc");
+        cred_cvc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cred_cvcActionPerformed(evt);
+            }
+        });
+
+        ship_address_city.setText("city");
+
+        ship_address_state.setText("state");
+
+        ship_address_zip.setText("zip");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,7 +177,6 @@ public class MakeCustomerUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(phoneLabel)
                                 .addComponent(mobileLabel))
-                            .addComponent(billAddressLabel)
                             .addComponent(usernameLabel)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -145,17 +187,25 @@ public class MakeCustomerUI extends javax.swing.JFrame {
                             .addComponent(creditCardLabel, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createCutomerButton)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(shipAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(billingAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(creditcardField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(ship_address_zip, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ship_address_state, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cred_cvc, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cred_year, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cred_month, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cred_number, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(createCutomerButton)
+                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cred_name, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ship_address_line2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addComponent(ship_address_line1)
+                        .addComponent(ship_address_city, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,30 +231,42 @@ public class MakeCustomerUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(shipAddressLabel)
-                    .addComponent(shipAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ship_address_line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(billingAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(billAddressLabel))
+                .addComponent(ship_address_line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ship_address_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ship_address_state, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ship_address_zip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password2Label))
+                    .addComponent(passwordLabel)
+                    .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(creditCardLabel)
-                    .addComponent(creditcardField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password2Label)
+                    .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cred_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(creditCardLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cred_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cred_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cred_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cred_cvc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(createCutomerButton)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -213,13 +275,11 @@ public class MakeCustomerUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
         );
 
         pack();
@@ -231,17 +291,44 @@ public class MakeCustomerUI extends javax.swing.JFrame {
         String phone = phoneField.getText();
         String mobile = mobileField.getText();
         String email = emailField.getText();
-        String shipAdd = shipAddressField.getText();
-        String billAdd = billingAddressField.getText();
-        String creditCard = creditcardField.getText();
+        String ship_add_line1 = ship_address_line1.getText();
+        String ship_add_line2 = ship_address_line2.getText();
+         String ship_add_city = ship_address_city.getText();
+         String ship_add_state = ship_address_state.getText();
+         String ship_add_zip = ship_address_zip.getText();
+        String cc_name = cred_name.getText();
+         String cc_number = cred_number.getText();
+          String cc_month = cred_month.getText();
+          String cc_year = cred_year.getText();
+          String cc_cvc = cred_cvc.getText();
         String username = usernameField.getText();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
         
-        controller.createCustomer(name, phone, mobile, shipAdd, billAdd, creditCard, username, password1, password2);
+        controller.createCustomer(name,phone,mobile,email,ship_add_line1, ship_add_line2, ship_add_city, ship_add_state, ship_add_zip,cc_name,cc_number, cc_month,cc_year,cc_cvc, username, password1, password2);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_createCutomerButtonActionPerformed
+
+    private void cred_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cred_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cred_nameActionPerformed
+
+    private void cred_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cred_numberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cred_numberActionPerformed
+
+    private void cred_monthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cred_monthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cred_monthActionPerformed
+
+    private void cred_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cred_yearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cred_yearActionPerformed
+
+    private void cred_cvcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cred_cvcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cred_cvcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,12 +366,14 @@ public class MakeCustomerUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel billAddressLabel;
-    private javax.swing.JTextField billingAddressField;
     private javax.swing.JButton createCutomerButton;
+    private javax.swing.JTextField cred_cvc;
+    private javax.swing.JTextField cred_month;
+    private javax.swing.JTextField cred_name;
+    private javax.swing.JTextField cred_number;
+    private javax.swing.JTextField cred_year;
     private javax.swing.JLabel creditCardLabel;
     private javax.swing.JTextField creditcardField;
-    private javax.swing.JTextField creditcardField1;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JPanel jPanel1;
@@ -299,8 +388,12 @@ public class MakeCustomerUI extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLabel;
-    private javax.swing.JTextField shipAddressField;
     private javax.swing.JLabel shipAddressLabel;
+    private javax.swing.JTextField ship_address_city;
+    private javax.swing.JTextField ship_address_line1;
+    private javax.swing.JTextField ship_address_line2;
+    private javax.swing.JTextField ship_address_state;
+    private javax.swing.JTextField ship_address_zip;
     private javax.swing.JLabel title;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel usernameLabel;

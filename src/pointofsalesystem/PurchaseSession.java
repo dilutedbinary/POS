@@ -36,7 +36,21 @@ public class PurchaseSession {
 		mCurrent_Transaction = new Transaction(u1,u2);
 	}
     
-
+    public int addNewUser(int usertype,String name,String phone,String mobile,String email,String ship_add_line1,String ship_add_line2,String ship_add_city,String ship_add_state,String ship_add_zip,String cred_name,String cred_number,String cred_month,String cred_year,String cred_cvc,String username,String password1){
+        //TODO: Implement Addresses and CreditCards correctly
+        Address addr = new Address(ship_add_line1, ship_add_line2, ship_add_city,ship_add_state, ship_add_zip);
+        CreditCard card = new CreditCard(cred_number,cred_name, cred_month, cred_year, cred_cvc);
+        if(!card.authenticateCard()) {
+             User new_user = new User(name, phone, mobile, email, addr, addr, card,usertype,username,password1);
+            int id = mDB.storeUser(new_user);
+            return -10; 
+        }
+        User new_user = new User(name, phone, mobile, email, addr, addr, card,usertype,username,password1);
+        int id = mDB.storeUser(new_user);
+        return id;
+    }
+    
+    
     /** Logs a user into the database. */
     public boolean login(String userId, String password) {
       mDB = new Database(userId, password);
