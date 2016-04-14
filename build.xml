@@ -12,11 +12,13 @@
     <property name="cc.dir"      value="src/creditcardauthenticator"/>
     <property name="tax.dir"     value="src/taxcalculator"/>
     <property name="rental.dir" value=  "src/rentalcalculator"/>
+    <property name="test.dir" value = "test/unittestpointofsalesystem" />
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="ccclasses.dir" value = "${build.dir}/ccclasses"/>
     <property name="taxclasses.dir" value= "${build.dir}/taxclasses"/>
     <property name="rentalclasses.dir" value= "${build.dir}/rentalclasses" />
+    <property name="testclasses.dir" value= "${build.dir}/testclasses" />
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir" value="lib"/>
     <property name="main-class"  value="pointofsalesystem.PointOfSaleSystem"/>
@@ -45,7 +47,12 @@
 
 <target name="compile" depends = "jarlibs">
         <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${testclasses.dir}" />
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+        <!--
+        <javac srcdir="${test.dir}" destdir="${testclasses.dir}" classpathref="classpath" />
+       -->
+        
     </target>
 
     <target name="jar" depends="compile">
@@ -55,9 +62,23 @@
                 <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
         </jar>
+        <!--
+        <jar destfile="${jar.dir}/unittests.jar" basedir="${testclasses.dir}" >
+            <manifest>
+                <attribute name="Main-Class" value="test.unittestpointofsalesystem.CreditCardJunitRunner" />
+            </manifest>
+        </jar>
+        -->
     </target>
 
     <target name="run" depends="jar">
+        <!-- <java fork="true" classname="test.pointofsalesystem.CreditCardJunitRunner" >
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.dir}/unittests.jar" />
+            </classpath>
+        </java>
+        -->
         <java fork="true" classname="${main-class}">
             <classpath>
                 <path refid="classpath"/>

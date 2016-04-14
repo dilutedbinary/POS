@@ -24,6 +24,11 @@ public class PurchaseSession {
         posc = cont;
     }
     
+//    public void removeItem(int id){
+//       Quadruple<Item, Integer, Integer, Integer> t = mCurrent_Transaction.getItemByID(id)
+//        mCurrent_Transaction.removeItem(t);
+//    }
+    
     public void newTransaction(int customer_id, int cashier_id) {
 
 		User u1 = mDB.getUser(customer_id);

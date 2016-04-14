@@ -99,6 +99,8 @@ public class PointOfSaleController {
     public void populateTable(Quadruple[] newTable){
         pos.clearTable();
         
+        
+        //hello
         //System.out.println("# items"+newTable.length);
         
         for(int i = 0; i < newTable.length; i++){
@@ -106,6 +108,25 @@ public class PointOfSaleController {
             int item_id = balls.getID();
             String item_name = balls.getName();
             double price = balls.getPrice();
+            
+            String transaction = "";
+            int typeID = (Integer)newTable[i].getC(); 
+            
+            System.out.println("balls: "+typeID);
+            
+            if(typeID == 0){
+                //sale
+                transaction = "Sale";
+            }else if(typeID == 1){
+                //rental
+                transaction = "Rental";
+                int poop = (Integer)newTable[i].getD(); 
+                
+            }else if(typeID == 2){
+                //return
+                price *= -1;
+                transaction = "Return";
+            }
             
             String priceS = price + "";
             String idS = item_id + "";
@@ -115,11 +136,25 @@ public class PointOfSaleController {
             String price = String.valueOf(newTable[i].getA().getPrice());
 */
             String qty = String.valueOf(newTable[i].getB());
-            pos.addLineItem(idS, item_name, priceS, qty);
+            pos.addLineItem(idS, item_name, priceS, qty, transaction);
         }
     }
     
-
+//    public void removeItem(String idString){
+//        int test = 69;
+//        
+//        try{
+//           test = (Integer.parseInt(itemIDString));
+//        }catch(Exception ex){
+//            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+//            return;
+//        }
+//        
+//        Quadruple balls = model.removeItem(test);
+//        
+//        Quadruple[] newTable = model.getLineItems();
+//        populateTable(newTable);
+//    }
     
     public void addReturnItem(String itemIDString){
        int test = 69;

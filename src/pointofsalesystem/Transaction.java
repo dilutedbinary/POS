@@ -97,14 +97,23 @@ public class Transaction implements Serializable{
     }
     //TODO: insert item into arraylist
     public void addItem(Quadruple<Item, Integer, Integer, Integer> t){
-        if (t.getA().getRentalPeriod() > 0){
-            RentalCalculatorInterface r = new RentalCalculatorInterface();
-            t.getA().setPrice(r.calculateCost(t.getA()));
+        boolean dup_flag = false;
+        if(mQuadrupleList == null){
+            mQuadrupleList = new ArrayList<Quadruple<Item,Integer, Integer, Integer>>();
         }
-	if(mQuadrupleList == null){
-	    mQuadrupleList = new ArrayList<Quadruple<Item,Integer, Integer, Integer>>();
-	}
-	mQuadrupleList.add(t);
+        for(int i=0; i < mQuadrupleList.size(); i++) {
+            if((mQuadrupleList.get(i).getA().getID() == t.getA().getID()) && (mQuadrupleList.get(i).getC().equals(t.getC()))) {
+                mQuadrupleList.get(i).setB(new Integer((mQuadrupleList.get(i).getB().intValue()) + 1));
+                dup_flag = true;
+            }
+        }
+        if(!dup_flag) {
+            if (t.getA().getRentalPeriod() > 0){
+                RentalCalculatorInterface r = new RentalCalculatorInterface();
+                t.getA().setPrice(r.calculateCost(t.getA()));
+            }
+            mQuadrupleList.add(t);
+        }
     }
     
     //TODO: remove item from list

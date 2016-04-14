@@ -109,6 +109,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         });
 
         removeItemButton1.setText("Remove Item");
+        removeItemButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeItemButton1ActionPerformed(evt);
+            }
+        });
 
         returnItemButton.setText("Return Item");
 
@@ -126,14 +131,14 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ItemId", "Name", "Price", "Quantity"
+                "ItemId", "Name", "Price", "Quantity", "Transaction"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -159,6 +164,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             lineItemTable.getColumnModel().getColumn(1).setResizable(false);
             lineItemTable.getColumnModel().getColumn(2).setResizable(false);
             lineItemTable.getColumnModel().getColumn(3).setResizable(false);
+            lineItemTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         cancelSaleButton.setText("Cancel Sale");
@@ -399,8 +405,13 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
     private void purchaseItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseItemButtonActionPerformed
         // TODO add your handling code here:
-        enterCustomerIDButtonActionPerformed(evt);
+        enterItemButtonActionPerformed(evt);
     }//GEN-LAST:event_purchaseItemButtonActionPerformed
+
+    private void removeItemButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeItemButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_removeItemButton1ActionPerformed
 
     private int getSelectedItem(){
         int[] selected = lineItemTable.getSelectedRows();
@@ -455,8 +466,8 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         cashierIDLable.setText(cID);
     }
     
-    public void addLineItem(String id, String name, String price, String quantity){
-        modelT.addRow(new Object[]{id, name, price, quantity});
+    public void addLineItem(String id, String name, String price, String quantity, String trans){
+        modelT.addRow(new Object[]{id, name, price, quantity, trans});
     }
     
     public void clearTable(){

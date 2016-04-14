@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pointofsalesystem;
+package unittestpointofsalesystem;
 
+import pointofsalesystem.*;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import pointofsalesystem.Item;
+import pointofsalesystem.StockCache;
+import pointofsalesystem.Transaction;
 import static org.junit.Assert.*;
 
 /**

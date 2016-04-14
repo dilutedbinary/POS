@@ -1,4 +1,4 @@
-package pointofsalesystem;
+package unittestpointofsalesystem;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +6,7 @@ package pointofsalesystem;
  * and open the template in the editor.
  */
 
-
+import pointofsalesystem.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.After;
@@ -14,6 +14,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import pointofsalesystem.Item;
+import pointofsalesystem.StockCache;
 import static org.junit.Assert.*;
 
 /**
