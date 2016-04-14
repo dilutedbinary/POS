@@ -28,6 +28,7 @@ public class PointOfSaleController {
        
         pos.setVisible(true);            //start POS ui
          pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
+         model.addController(this);
     }
     
     public PointOfSaleController(String id, String pass, PurchaseSession ses){
@@ -94,6 +95,9 @@ public class PointOfSaleController {
     
     public void populateTable(Triplet[] newTable){
         pos.clearTable();
+        
+        //System.out.println("# items"+newTable.length);
+        
         for(int i = 0; i < newTable.length; i++){
             Item balls = (Item)newTable[i].getA();
             int item_id = balls.getID();

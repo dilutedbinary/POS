@@ -95,6 +95,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         });
 
         purchaseItemButton.setText("Purchase Item");
+        purchaseItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseItemButtonActionPerformed(evt);
+            }
+        });
 
         rentItemButton.setText("Rent Item");
         rentItemButton.addActionListener(new java.awt.event.ActionListener() {
@@ -392,6 +397,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         posController.enterCustomerID(customerIdTextField.getText());
     }//GEN-LAST:event_enterCustomerIDButtonActionPerformed
 
+    private void purchaseItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseItemButtonActionPerformed
+        // TODO add your handling code here:
+        enterCustomerIDButtonActionPerformed(evt);
+    }//GEN-LAST:event_purchaseItemButtonActionPerformed
+
     private int getSelectedItem(){
         int[] selected = lineItemTable.getSelectedRows();
         if(selected.length==1){
@@ -450,9 +460,12 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     }
     
     public void clearTable(){
-        int rowNumber = modelT.getRowCount();
+        int rowNumber = lineItemTable.getRowCount();
+        
+        //System.out.println("rows to cleared in table "+ rowNumber);
+        
         for(int i = 0; i < rowNumber; i++){
-            modelT.removeRow(i);
+            modelT.removeRow(0);
         }
         
     }

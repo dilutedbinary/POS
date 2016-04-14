@@ -9,6 +9,7 @@ public class PurchaseSession {
     private Transaction mCurrent_Transaction;
     private Transaction mFinalize_Transaction;
     private Database mDB;
+    private PointOfSaleController posc;
 
     
     /** Constructor for PurchaseSession. */
@@ -17,6 +18,10 @@ public class PurchaseSession {
       mPassword = password;
       mDB = new Database(userID,password);
       newTransaction(1,21); //TODO: ADD A WAY TO PASS IN CASHIER AND CUSTOMER IDS - Also might want to have the UI have a button to wipe the current transaction and create a new one
+    }
+    
+    public void addController(PointOfSaleController cont){
+        posc = cont;
     }
     
     public void newTransaction(int customer_id, int cashier_id) {
@@ -40,24 +45,24 @@ public class PurchaseSession {
     }
     
     /** Adds an item to the current transaction. */
-    public Triplet<Item, Integer, Integer> addItem(int id){
+    public Quadruple<Item, Integer, Integer, Integer> addItem(int id, int period){
       Item item = mDB.getItemInfo(id);
-      Triplet<Item, Integer, Integer> t;
-      if((item.getRentalPeriod()) > 0) {
-        t = new Triplet<Item, Integer, Integer>(item, 1, 1);
+      Quadruple<Item, Integer, Integer, Integer> t;
+      if(period > 0) {
+        t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 1, period);
       }
       else if (item.getRentalPeriod() == 0) {
-        t = new Triplet<Item, Integer, Integer>(item, 1, 0);
+        t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 0, period);
       }
       else {
-          t = new Triplet<Item, Integer, Integer>(item, 1, 2);
+          t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 2, period);
       }
       mCurrent_Transaction.addItem(t);
       return t;
     }
     
-    public Triplet[] getLineItems(){
-        Triplet[] out = mCurrent_Transaction.getTripleList().toArray(new Triplet[mCurrent_Transaction.getTripleList().size()]);
+    public Quadruple[] getLineItems(){
+        Quadruple[] out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
         return out;
     }
     
