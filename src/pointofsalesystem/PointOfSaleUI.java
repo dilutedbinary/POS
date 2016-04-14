@@ -353,7 +353,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void enterItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterItemButtonActionPerformed
         // when Enter is pressed
         String itemId = itemIdField.getText();      //get id entered
@@ -362,7 +362,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_enterItemButtonActionPerformed
     
-            private void updateTotals() {
+        public void updateTotals() {
         //Updates Subtotal, tax, and Total
         this.updateSubtotal(String.valueOf(posController.getSubTotal()));
         this.updateTax(String.valueOf(posController.getTax()));

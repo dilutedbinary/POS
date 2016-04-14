@@ -124,7 +124,7 @@ public class PointOfSaleController {
                 
             }else if(typeID == 2){
                 //return
-                price *= -1;
+                //price *= -1;
                 transaction = "Return";
             }
             
@@ -138,6 +138,7 @@ public class PointOfSaleController {
             String qty = String.valueOf(newTable[i].getB());
             pos.addLineItem(idS, item_name, priceS, qty, transaction);
         }
+        pos.updateTotals();
     }
     
 //    public void removeItem(String idString){

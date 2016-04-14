@@ -60,7 +60,9 @@ public class PurchaseSession {
         t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 0, period);
       }
       else {
+          item.setPrice(item.getPrice()*-1);
           t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 2, period);
+          
       }
       mCurrent_Transaction.addItem(t);
       return t;
