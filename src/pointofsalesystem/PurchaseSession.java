@@ -17,7 +17,7 @@ public class PurchaseSession {
     public PurchaseSession(String userID, String password) {
       mUserID = userID;
       mPassword = password;
-      mDB = new Database(userID,password);
+      mDB = new Database();
       newTransaction(1,21); //TODO: ADD A WAY TO PASS IN CASHIER AND CUSTOMER IDS - Also might want to have the UI have a button to wipe the current transaction and create a new one
     }
     
@@ -39,15 +39,15 @@ public class PurchaseSession {
     
 
     /** Logs a user into the database. */
-    public boolean login(String userId, String password) {
-      mDB = new Database(userId, password);
-      return mDB.isConnected();
+    public int login(String userId, String password) {
+      mDB = new Database();
+      return mDB.authenticateUser(userId,password);
     }
     
      /** Logs a user into the database using mUserId an mPassword. */
-    public boolean login() {
-      mDB = new Database(mUserID, mPassword);
-      return mDB.isConnected();
+    public int login() {
+      mDB = new Database();
+      return mDB.authenticateUser(mUserID, mPassword);
     }
     
     /** Adds an item to the current transaction. */
