@@ -96,6 +96,8 @@ public class PointOfSaleController {
     public void populateTable(Quadruple[] newTable){
         pos.clearTable();
         
+        
+        //hello
         //System.out.println("# items"+newTable.length);
         
         for(int i = 0; i < newTable.length; i++){
