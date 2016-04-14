@@ -37,8 +37,8 @@ public class PointOfSaleController {
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);            //start POS ui
         setModel(ses);
-        model.addController(this);
          pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
+         model.addController(this);
     }
     
     public void setModel(PurchaseSession ses){
@@ -144,7 +144,7 @@ public class PointOfSaleController {
                 
             }else if(typeID == 2){
                 //return
-                price *= -1;
+                //price *= -1;
                 transaction = "Return";
             }
             
@@ -158,6 +158,7 @@ public class PointOfSaleController {
             String qty = String.valueOf(newTable[i].getB());
             pos.addLineItem(idS, item_name, priceS, qty, transaction);
         }
+        pos.updateTotals();
     }
     
 //    public void removeItem(String idString){
@@ -271,6 +272,7 @@ public class PointOfSaleController {
     
     public void newPurchaseSession(){
         pos.setVisible(false);
+        pos.dispose();
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);
         pos.setID(userID);

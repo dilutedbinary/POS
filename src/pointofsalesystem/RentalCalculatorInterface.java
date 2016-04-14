@@ -15,9 +15,9 @@ public class RentalCalculatorInterface {
 
     public RentalCalculatorInterface(){}
     
-    public double calculateCost(Item i){ 
+    public double calculateCost(int period, double price){ 
         RentalCalculator Calc = new RentalCalculator();
-        Calc.enterRentalInfo(i.getRentalPeriod(), i.getPrice());
+        Calc.enterRentalInfo(period, price);
         return Calc.CalculateRentalTotal();
     }
 }

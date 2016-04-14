@@ -10,13 +10,14 @@ public class PurchaseSession {
     private Transaction mFinalize_Transaction;
     private Database mDB;
     private PointOfSaleController posc;
+    private Quadruple[] out;
 
     
     /** Constructor for PurchaseSession. */
     public PurchaseSession(String userID, String password) {
       mUserID = userID;
       mPassword = password;
-      mDB = new Database(userID,password);
+      mDB = new Database();
       newTransaction(1,21); //TODO: ADD A WAY TO PASS IN CASHIER AND CUSTOMER IDS - Also might want to have the UI have a button to wipe the current transaction and create a new one
     }
     
@@ -30,7 +31,6 @@ public class PurchaseSession {
 //    }
     
     public void newTransaction(int customer_id, int cashier_id) {
-
 		User u1 = mDB.getUser(customer_id);
                 User u2 = mDB.getUser(cashier_id);
 		mCurrent_Transaction = new Transaction(u1,u2);
@@ -52,15 +52,15 @@ public class PurchaseSession {
     
     
     /** Logs a user into the database. */
-    public boolean login(String userId, String password) {
-      mDB = new Database(userId, password);
-      return mDB.isConnected();
+    public int login(String userId, String password) {
+      mDB = new Database();
+      return mDB.authenticateUser(userId,password);
     }
     
      /** Logs a user into the database using mUserId an mPassword. */
-    public boolean login() {
-      mDB = new Database(mUserID, mPassword);
-      return mDB.isConnected();
+    public int login() {
+      mDB = new Database();
+      return mDB.authenticateUser(mUserID, mPassword);
     }
     
     /** Adds an item to the current transaction. */
@@ -74,14 +74,16 @@ public class PurchaseSession {
         t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 0, period);
       }
       else {
+          item.setPrice(item.getPrice()*-1);
           t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 2, period);
+          
       }
       mCurrent_Transaction.addItem(t);
       return t;
     }
     
     public Quadruple[] getLineItems(){
-        Quadruple[] out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
+        out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
         return out;
     }
     
@@ -109,7 +111,6 @@ public class PurchaseSession {
     //TODO: CHANGE THIS TO NOT ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
     public void checkout(String tempID) {  
 		//Save the transaction to the Database
-                System.out.println("here");
 		mDB.saveTransaction(mCurrent_Transaction);
 		//Write this stuff to a text file
 		//Putting it in a try statment will automatically close it after finishing(Java 7 or later)
@@ -121,6 +122,7 @@ public class PurchaseSession {
                 
                 posc.newPurchaseSession();
                 newTransaction(1, Integer.getInteger(posc.getCashiereID()));
+                
                 
 	}
 }

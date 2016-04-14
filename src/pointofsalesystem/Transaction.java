@@ -102,15 +102,15 @@ public class Transaction implements Serializable{
             mQuadrupleList = new ArrayList<Quadruple<Item,Integer, Integer, Integer>>();
         }
         for(int i=0; i < mQuadrupleList.size(); i++) {
-            if((mQuadrupleList.get(i).getA().getID() == t.getA().getID()) && (mQuadrupleList.get(i).getC().equals(t.getC()))) {
+            if((mQuadrupleList.get(i).getA().getID() == t.getA().getID()) && (mQuadrupleList.get(i).getC().equals(t.getC())) && (mQuadrupleList.get(i).getD() <= 0)) {
                 mQuadrupleList.get(i).setB(new Integer((mQuadrupleList.get(i).getB().intValue()) + 1));
                 dup_flag = true;
             }
         }
         if(!dup_flag) {
-            if (t.getA().getRentalPeriod() > 0){
+            if (t.getD() > 0){
                 RentalCalculatorInterface r = new RentalCalculatorInterface();
-                t.getA().setPrice(r.calculateCost(t.getA()));
+                t.getA().setPrice(r.calculateCost(t.getD().intValue(),t.getA().getPrice()));
             }
             mQuadrupleList.add(t);
         }
@@ -153,7 +153,7 @@ public class Transaction implements Serializable{
 		Date date = new Date();
     	s.append("$crumDogBillionairesPOS\n\n");
     	s.append(dateFormat.format(date) + "\n\n");
-   		s.append("\tName\t|\tPrice\t|\tQty\t|\tType\t\n");
+   		s.append("\tName\t|\tPrice\t|\tQty\t|\tType\t|\tRental Period(Days)\t\n");
     	for(int i = 0; i < mQuadrupleList.size(); i++){
     		s.append("\n\t" + mQuadrupleList.get(i).getA().getName() + "\t\t" + mQuadrupleList.get(i).getA().getPrice() 
     				+ "\t\tx" + Integer.toString(mQuadrupleList.get(i).getB()));
@@ -161,12 +161,15 @@ public class Transaction implements Serializable{
                 switch(mQuadrupleList.get(i).getC()) {
                     case -1:
                         s.append("\t\t RETURN\t");
+                        s.append("\t\t N/A\t");
                         break;
                     case 0:
                         s.append("\t\t SALE\t");
+                        s.append("\t\t N/A\t");
                         break;
                     case 1:
                         s.append("\t\t RENTAL\t");
+                        s.append("\t\t "+ mQuadrupleList.get(i).getA().getRentalPeriod()+ "\t");
                         break;
                     default:
                         break;
@@ -177,6 +180,7 @@ public class Transaction implements Serializable{
     				+ "\nTotal: $" + Double.toString(calculateTotal()) + "\n\n");
     	
     	s.append("Cashier:" + myid + "\n\n");
+        s.append("Rental rules: rental price for the period given is equal to $(itemprice * .25) + (rentalperiod *.10)");
     	s.append("HAVE  A GREAT DAY!");
     	return s.toString();
     }

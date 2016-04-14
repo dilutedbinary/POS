@@ -182,11 +182,14 @@ return;
 	 *
 	 * @param username -- the username to be checked
 	 * @param password -- the password to be checked
-	 * @return true if the username and password combo exists within the database, false otherwise
+	 * @return -2 if cant connect, -1 if non user, 0 for admin, 1 for manager, 2 for cachier, 3 for customer
 	 */
-	public boolean authenticateUser(String username, String password) {
+	public int authenticateUser(String username, String password) {
 		if (!this.connect()) {
-			return false;
+			this.disconnect();
+
+		    //connection error
+			return -2;
 		}
 
 		try {
@@ -199,7 +202,11 @@ return;
 				printResultSet(rs);
 
 
-			rs.first();
+			if(!rs.next()){
+			    this.disconnect();
+
+			    return -1;
+			}
 
 			//System.out.println("Printed");
 			usertype = Integer.parseInt(rs.getString("USER_TYPE"));
@@ -207,14 +214,56 @@ return;
 			this.disconnect();
 			//System.out.println("disconnected...");
 
-			return true;
+			return usertype;
 		} catch (SQLException ex) {
 			this.disconnect();
-			return false;
+			return -2;
 		}
 
 	}
 
+		public int getUserID(String username, String password) {
+		if (!this.connect()) {
+			this.disconnect();
+
+		    //connection error
+			return -1;
+		}
+
+		try {
+			stmt = conn.createStatement();
+			//Query for a person with the specified username and password
+			rs = stmt.executeQuery("SELECT * FROM person WHERE USERNAME = '" + username + "' AND USER_PASSWD = '" + password + "';");
+			//Try to extract data from teh query, can be anything but in this case let's get person_id
+			//An exception will be thrown if the query is empty
+			if(verbose)
+				printResultSet(rs);
+
+
+			if(!rs.next()){
+			    this.disconnect();
+
+			    return -1;
+			}
+
+			//System.out.println("Printed");
+			userid = Integer.parseInt(rs.getString("PERSON_ID"));
+			//System.out.println("type set");
+			this.disconnect();
+			//System.out.println("disconnected...");
+
+			return userid;
+		} catch (SQLException ex) {
+			this.disconnect();
+			return -2;
+		}
+
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Connects the Database object to the actual database. By convention the database connection should be opened and
 	 * then closed on every to this Database object to ensure there aren't any connections left open
@@ -588,7 +637,7 @@ return;
 	    //Parse out the itemid and return
     		rs.first();
     		int itemid = rs.getInt("ITEM_ID");
-
+		updateCache();
     		this.disconnect();
     		return itemid;
     	}

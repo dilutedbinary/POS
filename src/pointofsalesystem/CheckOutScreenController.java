@@ -37,6 +37,7 @@ public class CheckOutScreenController {
     public void getReceipt(){
         double change = coUI.getChange();
         coUI.setVisible(false);
+        coUI.dispose();
         AlertScreen al = new AlertScreen("Change due: $" + (change - total) + "");
         al.setVisible(true);
         //ps.checkout(tempID);
