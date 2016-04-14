@@ -14,7 +14,7 @@ public class Transaction implements Serializable{
     private User mCustomer;
     private User mCashier;
     private int mTransactionType;
-    private ArrayList<Triplet<Item, Integer, Integer>> mTripleList;
+    private ArrayList<Quadruple<Item, Integer, Integer, Integer>> mQuadrupleList;
     private int mPaymentMethod;
     private Timestamp mTimestamp;
     //private double mSubTotal = 0.0;
@@ -79,8 +79,8 @@ public class Transaction implements Serializable{
 	return this.mCashier;
     }
     
-    public ArrayList<Triplet<Item, Integer, Integer>> getTripleList(){
-	return this.mTripleList;
+    public ArrayList<Quadruple<Item, Integer, Integer, Integer>> getQuadrupleList(){
+	return this.mQuadrupleList;
 	}
     
     public int getTransactionType(){
@@ -96,22 +96,22 @@ public class Transaction implements Serializable{
 	return round(Calc.calculateTax(this));
     }
     //TODO: insert item into arraylist
-    public void addItem(Triplet<Item, Integer, Integer> t){
+    public void addItem(Quadruple<Item, Integer, Integer, Integer> t){
         if (t.getA().getRentalPeriod() > 0){
             RentalCalculatorInterface r = new RentalCalculatorInterface();
             t.getA().setPrice(r.calculateCost(t.getA()));
         }
-	if(mTripleList == null){
-	    mTripleList = new ArrayList<Triplet<Item,Integer, Integer>>();
+	if(mQuadrupleList == null){
+	    mQuadrupleList = new ArrayList<Quadruple<Item,Integer, Integer, Integer>>();
 	}
-	mTripleList.add(t);
+	mQuadrupleList.add(t);
     }
     
     //TODO: remove item from list
-    public void removeItem(Triplet<Item, Integer, Integer> t){
-	for(int i =0; i < mTripleList.size(); i++){
-	    if(t.getA().getID() == mTripleList.get(i).getA().getID()){
-	    	mTripleList.remove(t);
+    public void removeItem(Quadruple<Item, Integer, Integer, Integer> t){
+	for(int i =0; i < mQuadrupleList.size(); i++){
+	    if(t.getA().getID() == mQuadrupleList.get(i).getA().getID()){
+	    	mQuadrupleList.remove(t);
 	    }
 	}
     }
@@ -120,8 +120,8 @@ public class Transaction implements Serializable{
     }
     public double calculateSubTotal(){
 	double mSubTotal = 0.0;
-	for(int i = 0; i < getTripleList().size(); i++){
-	    mSubTotal += getTripleList().get(i).getA().getPrice() * getTripleList().get(i).getB();
+	for(int i = 0; i < getQuadrupleList().size(); i++){
+	    mSubTotal += getQuadrupleList().get(i).getA().getPrice() * getQuadrupleList().get(i).getB();
 	}
 	return round(mSubTotal);
     }
@@ -145,11 +145,11 @@ public class Transaction implements Serializable{
     	s.append("$crumDogBillionairesPOS\n\n");
     	s.append(dateFormat.format(date) + "\n\n");
    		s.append("\tName\t|\tPrice\t|\tQty\t|\tType\t\n");
-    	for(int i = 0; i < mTripleList.size(); i++){
-    		s.append("\n\t" + mTripleList.get(i).getA().getName() + "\t\t" + mTripleList.get(i).getA().getPrice() 
-    				+ "\t\tx" + Integer.toString(mTripleList.get(i).getB()));
+    	for(int i = 0; i < mQuadrupleList.size(); i++){
+    		s.append("\n\t" + mQuadrupleList.get(i).getA().getName() + "\t\t" + mQuadrupleList.get(i).getA().getPrice() 
+    				+ "\t\tx" + Integer.toString(mQuadrupleList.get(i).getB()));
                 
-                switch(mTripleList.get(i).getC()) {
+                switch(mQuadrupleList.get(i).getC()) {
                     case -1:
                         s.append("\t\t RETURN\t");
                         break;
@@ -179,9 +179,9 @@ public class Transaction implements Serializable{
     	s.append("$crumDogBillionairesPOS\n\n");
     	s.append(dateFormat.format(date) + "\n\n");
    		s.append("Name | Price | Qty |\n");
-    	for(int i = 0; i < mTripleList.size(); i++){
-    		s.append("\n" + mTripleList.get(i).getA().getName() + " " + mTripleList.get(i).getA().getPrice() 
-    				+ "  x" + Integer.toString(mTripleList.get(i).getB()));
+    	for(int i = 0; i < mQuadrupleList.size(); i++){
+    		s.append("\n" + mQuadrupleList.get(i).getA().getName() + " " + mQuadrupleList.get(i).getA().getPrice() 
+    				+ "  x" + Integer.toString(mQuadrupleList.get(i).getB()));
     	}
     	s.append("\n\nSubTotal: $" + Double.toString(calculateSubTotal()) + "\nTax: $" + Double.toString(getTax()) 
     				+ "\nTotal: $" + Double.toString(calculateTotal()) + "\n\n");
