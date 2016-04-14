@@ -131,14 +131,14 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ItemId", "Name", "Price", "Quantity"
+                "ItemId", "Name", "Price", "Quantity", "Transaction"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -164,6 +164,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             lineItemTable.getColumnModel().getColumn(1).setResizable(false);
             lineItemTable.getColumnModel().getColumn(2).setResizable(false);
             lineItemTable.getColumnModel().getColumn(3).setResizable(false);
+            lineItemTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         cancelSaleButton.setText("Cancel Sale");
