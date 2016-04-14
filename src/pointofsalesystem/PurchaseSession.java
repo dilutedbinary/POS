@@ -9,6 +9,7 @@ public class PurchaseSession {
     private Transaction mCurrent_Transaction;
     private Transaction mFinalize_Transaction;
     private Database mDB;
+    private PointOfSaleController posc;
 
     
     /** Constructor for PurchaseSession. */
@@ -17,6 +18,10 @@ public class PurchaseSession {
       mPassword = password;
       mDB = new Database(userID,password);
       newTransaction(1,21); //TODO: ADD A WAY TO PASS IN CASHIER AND CUSTOMER IDS - Also might want to have the UI have a button to wipe the current transaction and create a new one
+    }
+    
+    public void addController(PointOfSaleController cont){
+        posc = cont;
     }
     
     public void newTransaction(int customer_id, int cashier_id) {

@@ -27,6 +27,7 @@ public class PointOfSaleController {
        
         pos.setVisible(true);            //start POS ui
          pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
+         model.addController(this);
     }
     
     public PointOfSaleController(String id, String pass, PurchaseSession ses){
