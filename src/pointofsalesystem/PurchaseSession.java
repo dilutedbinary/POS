@@ -98,6 +98,7 @@ public class PurchaseSession {
 	} catch(java.io.FileNotFoundException ex) {
 		System.out.println("ERROR - Could not print receipt to file!!");
 	}
+                posc.newPurchaseSession();
                 
 	}
 }
