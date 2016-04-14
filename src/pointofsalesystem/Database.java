@@ -726,8 +726,8 @@ return;
     			int qty = rs.getInt("QUANTITY");
     			int type = rs.getInt("TYPE");
     			Item i = this.getItemInfo(item_id,true);
-    			Triplet<Item,Integer,Integer> trip = new Triplet(i,qty,type);
-    			t.addItem(trip);
+    			Quadruple<Item,Integer,Integer, Integer> quad = new Quadruple(i,qty,type, 0);
+    			t.addItem(quad);
     		}
 
     		this.disconnect();
@@ -1217,13 +1217,13 @@ return;
     		transaction_id = rs.getInt("TRANSACTION_ID");
 
 	    //Now referencing this Transaction ID we need to insert into the transaction_item table one time for every unique item in the transaction specifying the item_id, quantity, type, price_sold,tax_amt
-    		for (int i = 0; i < t.getTripleList().size(); i++) {
+    		for (int i = 0; i < t.getQuadrupleList().size(); i++) {
 		//Get the info we need
 		//A is an Item, B is amount, C is a boolean stating whether or not it is a rental
-    			int item_id = t.getTripleList().get(i).getA().getID();
-    			int qty = t.getTripleList().get(i).getB();
-    			int rent_or_buy = t.getTripleList().get(i).getC();
-    			double price = t.getTripleList().get(i).getA().getPrice();
+    			int item_id = t.getQuadrupleList().get(i).getA().getID();
+    			int qty = t.getQuadrupleList().get(i).getB();
+    			int rent_or_buy = t.getQuadrupleList().get(i).getC();
+    			double price = t.getQuadrupleList().get(i).getA().getPrice();
 //updating the inventory closes the connection...
     			if (!this.connect()) {
     				return -1;
@@ -1235,7 +1235,7 @@ return;
 				System.out.println("processingrental");
 			query = "INSERT INTO contract (RENTAL_LENGTH,RENTAL_RATE,RENTAL_START,LATE_FEE_RATE) VALUES (?,?,?,?)";
     			preStatement = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-    			preStatement.setInt(1,t.getTripleList().get(i).getA().getRentalPeriod());
+    			preStatement.setInt(1,t.getQuadrupleList().get(i).getA().getRentalPeriod());
     			preStatement.setDouble(2,.10);
     			preStatement.setString(3,""+System.currentTimeMillis());
     			preStatement.setDouble(4,.50);
