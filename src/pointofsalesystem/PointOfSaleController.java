@@ -37,8 +37,8 @@ public class PointOfSaleController {
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);            //start POS ui
         setModel(ses);
-        model.addController(this);
          pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
+         model.addController(this);
     }
     
     public void setModel(PurchaseSession ses){

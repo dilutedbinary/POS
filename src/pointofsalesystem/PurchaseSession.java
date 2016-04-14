@@ -31,7 +31,6 @@ public class PurchaseSession {
 //    }
     
     public void newTransaction(int customer_id, int cashier_id) {
-
 		User u1 = mDB.getUser(customer_id);
                 User u2 = mDB.getUser(cashier_id);
 		mCurrent_Transaction = new Transaction(u1,u2);
@@ -109,7 +108,7 @@ public class PurchaseSession {
                 
                 posc.newPurchaseSession();
                 newTransaction(1, Integer.getInteger(posc.getCashiereID()));
-                System.out.println("here!!!");
+                
                 
 	}
 }
