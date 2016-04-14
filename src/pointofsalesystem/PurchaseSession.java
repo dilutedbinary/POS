@@ -57,7 +57,7 @@ public class PurchaseSession {
       if(period > 0) {
         t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 1, period);
       }
-      else if (item.getRentalPeriod() == 0) {
+      else if (period == 0) {
         t = new Quadruple<Item, Integer, Integer, Integer>(item, 1, 0, period);
       }
       else {
