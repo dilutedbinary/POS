@@ -1,12 +1,14 @@
-package pointofsalesystem;
+package unittestpointofsalesystem;
 
 import creditcardauthenticator.CreditCardAuthenticator;
+import pointofsalesystem.*;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
+import pointofsalesystem.CreditCard;
 import static org.junit.Assert.*;
 
 public class CreditCardJunit {

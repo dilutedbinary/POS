@@ -1,8 +1,8 @@
-package pointofsalesystem;
+package unittestpointofsalesystem;
 
 
 
-
+import pointofsalesystem.*;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,6 +13,9 @@ import static org.junit.Assert.*;
 import java.io.PrintStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import pointofsalesystem.CreditCard;
+import pointofsalesystem.Database;
+import pointofsalesystem.Item;
 
 public class DatabaseJunit {
 	//Create a Database object for testing
