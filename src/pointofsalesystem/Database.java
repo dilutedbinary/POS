@@ -222,6 +222,48 @@ return;
 
 	}
 
+		public int getUserID(String username, String password) {
+		if (!this.connect()) {
+			this.disconnect();
+
+		    //connection error
+			return -1;
+		}
+
+		try {
+			stmt = conn.createStatement();
+			//Query for a person with the specified username and password
+			rs = stmt.executeQuery("SELECT * FROM person WHERE USERNAME = '" + username + "' AND USER_PASSWD = '" + password + "';");
+			//Try to extract data from teh query, can be anything but in this case let's get person_id
+			//An exception will be thrown if the query is empty
+			if(verbose)
+				printResultSet(rs);
+
+
+			if(!rs.next()){
+			    this.disconnect();
+
+			    return -1;
+			}
+
+			//System.out.println("Printed");
+			userid = Integer.parseInt(rs.getString("PERSON_ID"));
+			//System.out.println("type set");
+			this.disconnect();
+			//System.out.println("disconnected...");
+
+			return userid;
+		} catch (SQLException ex) {
+			this.disconnect();
+			return -2;
+		}
+
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Connects the Database object to the actual database. By convention the database connection should be opened and
 	 * then closed on every to this Database object to ensure there aren't any connections left open
