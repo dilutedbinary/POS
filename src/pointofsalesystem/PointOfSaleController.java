@@ -87,13 +87,13 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-        Triplet balls = model.addItem(test);
+        Quadruple balls = model.addItem(test, 0);
         
-        Triplet[] newTable = model.getLineItems();
+        Quadruple[] newTable = model.getLineItems();
         populateTable(newTable);
     }
     
-    public void populateTable(Triplet[] newTable){
+    public void populateTable(Quadruple[] newTable){
         pos.clearTable();
         
         //System.out.println("# items"+newTable.length);
@@ -118,37 +118,45 @@ public class PointOfSaleController {
     
 
     
-//    public void addReturnItem(String itemIDString){
-//       int test;
-//        
-//        try{
-//           test = (Integer.parseInt(itemIDString));
-//        }catch(Exception ex){
-//            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
-//        }
-//        
-//        Triplet[] newTable = model.addReturnItem(test);
-//        populateTable(newTable);
-//    }
-    
-    public void addRentalItem(String itemIDString, int days){
-        if(days < 1){
-            ErrorScreen es = new ErrorScreen(days + " is not a valid number of rental days");
-        }
-        int test;
-    }
+    public void addReturnItem(String itemIDString){
+       int test = 69;
         
-//    public void addRentalItem(String itemIDString, String daysString){
-//        int test = -1;
-//        try{
-//           test = (Integer.parseInt(itemIDString));
-//        }catch(Exception ex){
-//            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+        try{
+           test = (Integer.parseInt(itemIDString));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+            return;
+        }
+        
+        Quadruple balls = model.addItem(test, -1);
+        
+        Quadruple[] newTable = model.getLineItems();
+        populateTable(newTable);
+    }
+    
+//    public void addRentalItem(String itemIDString, int days){
+//        if(days < 1){
+//            ErrorScreen es = new ErrorScreen(days + " is not a valid number of rental days");
 //        }
-//        
-//        Triplet[] newTable = model.addRentalItem(test);
-//        populateTable(newTable);
+//        int test;
 //    }
+        
+    public void addRentalItem(String itemIDString, String daysString){
+        int id = -1;
+        int days = 0;
+        try{
+           id = (Integer.parseInt(itemIDString));
+           days = (Integer.parseInt(daysString));
+        }catch(Exception ex){
+            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+            return;
+        }
+        
+        Quadruple balls = model.addItem(id, days);
+        
+        Quadruple[] newTable = model.getLineItems();
+        populateTable(newTable);
+    }
     
     public double getTotal(){
         return model.getTotal();
