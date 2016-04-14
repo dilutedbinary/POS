@@ -182,11 +182,14 @@ return;
 	 *
 	 * @param username -- the username to be checked
 	 * @param password -- the password to be checked
-	 * @return true if the username and password combo exists within the database, false otherwise
+	 * @return -2 if cant connect, -1 if non user, 0 for admin, 1 for manager, 2 for cachier, 3 for customer
 	 */
-	public boolean authenticateUser(String username, String password) {
+	public int authenticateUser(String username, String password) {
 		if (!this.connect()) {
-			return false;
+			this.disconnect();
+
+		    //connection error
+			return -2;
 		}
 
 		try {
@@ -199,7 +202,11 @@ return;
 				printResultSet(rs);
 
 
-			rs.first();
+			if(!rs.next()){
+			    this.disconnect();
+
+			    return -1;
+			}
 
 			//System.out.println("Printed");
 			usertype = Integer.parseInt(rs.getString("USER_TYPE"));
@@ -207,10 +214,10 @@ return;
 			this.disconnect();
 			//System.out.println("disconnected...");
 
-			return true;
+			return usertype;
 		} catch (SQLException ex) {
 			this.disconnect();
-			return false;
+			return -2;
 		}
 
 	}
@@ -588,7 +595,7 @@ return;
 	    //Parse out the itemid and return
     		rs.first();
     		int itemid = rs.getInt("ITEM_ID");
-
+		updateCache();
     		this.disconnect();
     		return itemid;
     	}
