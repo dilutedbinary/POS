@@ -108,6 +108,9 @@ public class PointOfSaleController {
             
             String transaction = "";
             int typeID = (Integer)newTable[i].getC(); 
+            
+            System.out.println("balls: "+typeID);
+            
             if(typeID == 0){
                 //sale
                 transaction = "Sale";
@@ -130,7 +133,7 @@ public class PointOfSaleController {
             String price = String.valueOf(newTable[i].getA().getPrice());
 */
             String qty = String.valueOf(newTable[i].getB());
-            pos.addLineItem(idS, item_name, priceS, qty);
+            pos.addLineItem(idS, item_name, priceS, qty, transaction);
         }
     }
     

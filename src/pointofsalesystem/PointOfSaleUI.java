@@ -466,8 +466,8 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         cashierIDLable.setText(cID);
     }
     
-    public void addLineItem(String id, String name, String price, String quantity){
-        modelT.addRow(new Object[]{id, name, price, quantity});
+    public void addLineItem(String id, String name, String price, String quantity, String trans){
+        modelT.addRow(new Object[]{id, name, price, quantity, trans});
     }
     
     public void clearTable(){
