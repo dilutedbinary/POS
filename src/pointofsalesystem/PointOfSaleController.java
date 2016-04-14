@@ -112,7 +112,7 @@ public class PointOfSaleController {
             String transaction = "";
             int typeID = (Integer)newTable[i].getC(); 
             
-            System.out.println("balls: "+typeID);
+            //System.out.println("balls: "+typeID);
             
             if(typeID == 0){
                 //sale
@@ -159,6 +159,8 @@ public class PointOfSaleController {
     public void addReturnItem(String itemIDString){
        int test = 69;
         
+       //System.out.println("returning Item");
+       
         try{
            test = (Integer.parseInt(itemIDString));
         }catch(Exception ex){
