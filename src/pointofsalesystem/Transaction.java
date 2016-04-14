@@ -102,15 +102,15 @@ public class Transaction implements Serializable{
             mQuadrupleList = new ArrayList<Quadruple<Item,Integer, Integer, Integer>>();
         }
         for(int i=0; i < mQuadrupleList.size(); i++) {
-            if((mQuadrupleList.get(i).getA().getID() == t.getA().getID()) && (mQuadrupleList.get(i).getC().equals(t.getC()))) {
+            if((mQuadrupleList.get(i).getA().getID() == t.getA().getID()) && (mQuadrupleList.get(i).getC().equals(t.getC())) && (mQuadrupleList.get(i).getD() <= 0)) {
                 mQuadrupleList.get(i).setB(new Integer((mQuadrupleList.get(i).getB().intValue()) + 1));
                 dup_flag = true;
             }
         }
         if(!dup_flag) {
-            if (t.getA().getRentalPeriod() > 0){
+            if (t.getD() > 0){
                 RentalCalculatorInterface r = new RentalCalculatorInterface();
-                t.getA().setPrice(r.calculateCost(t.getA()));
+                t.getA().setPrice(r.calculateCost(t.getD().intValue(),t.getA().getPrice()));
             }
             mQuadrupleList.add(t);
         }
