@@ -29,9 +29,12 @@ public class Transaction implements Serializable{
     public static final int GIFTCARD = 3;
 
 	public Transaction(User mCustomer, User mCashier) {
-		setCustomer(mCustomer);
+		System.out.println("Beginning of trans constructor");
+                setCustomer(mCustomer);
 		setCashier(mCashier);
 		setTransactionID(0);   //default transactionID
+                mQuadrupleList = null;
+                System.out.println("is called");
 	}
 	
     public Transaction(int mTransactionID, User mCustomer, User mCashier){
@@ -40,6 +43,7 @@ public class Transaction implements Serializable{
 	setCustomer(mCustomer);
 	setCashier(mCashier);
 	setTransactionType(mTransactionType);
+        mQuadrupleList = null;
 	
     }
     

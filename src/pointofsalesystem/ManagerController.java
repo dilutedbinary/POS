@@ -58,12 +58,31 @@ public class ManagerController {
     }
     
     // balls balls balls
-    public void createCashier(String name, String phone, String mobile, String shipAdd, String billAdd, String creditcardString, String username, String password1, String password2){
+    public void createCashier(String name,String phone,String mobile,String email,String ship_add_line1,String ship_add_line2,String ship_add_city,String ship_add_state,String ship_add_zip,String cred_name,String cred_number,String cred_month,String cred_year,String cred_cvc,String username,String password1,String password2){
         //call method in session to add to database and return ID number
-        int idNum = 696969;
-        //validation!!!
-        String message = "New Cashier created with id#: "+idNum;
+       if(!password1.equals(password2)){
+         String message = "Error: Passwords don't match!!!!!";
+            AlertScreen al = new AlertScreen(message);
+        al.setVisible(true);
+        }
+        //The number 2 is for create cashier
+        PurchaseSession model = new PurchaseSession("jfc216","abc123");
+        int id = model.addNewUser(2,name, phone, mobile, email, ship_add_line1,ship_add_line2,ship_add_city,ship_add_state,ship_add_zip,cred_name,cred_number,cred_month,cred_year,cred_cvc, username, password1);
+         if(id == -10) {
+         String message = "Error: Credit Card Entered is not valid!!!";
+            AlertScreen al = new AlertScreen(message);
+        al.setVisible(true);
+        } 
+         else if(id < 0) {
+         String message = "Error: Unable to create new user!!!";
+            AlertScreen al = new AlertScreen(message);
+        al.setVisible(true);
+        }
+        else {
+        String message = "New Customer created with id#: "+id;
         AlertScreen al = new AlertScreen(message);
+        al.setVisible(true);
+        }
     }
     
     
