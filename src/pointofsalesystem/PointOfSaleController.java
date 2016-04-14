@@ -112,7 +112,7 @@ public class PointOfSaleController {
             String transaction = "";
             int typeID = (Integer)newTable[i].getC(); 
             
-            //System.out.println("balls: "+typeID);
+            System.out.println("balls2: "+typeID);
             
             if(typeID == 0){
                 //sale
@@ -251,6 +251,7 @@ public class PointOfSaleController {
     
     public void newPurchaseSession(){
         pos.setVisible(false);
+        pos.dispose();
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);
         pos.setID(userID);
