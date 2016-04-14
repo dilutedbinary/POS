@@ -450,9 +450,12 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     }
     
     public void clearTable(){
-        int rowNumber = modelT.getRowCount();
+        int rowNumber = lineItemTable.getRowCount();
+        
+        //System.out.println("rows to cleared in table "+ rowNumber);
+        
         for(int i = 0; i < rowNumber; i++){
-            modelT.removeRow(i);
+            modelT.removeRow(0);
         }
         
     }

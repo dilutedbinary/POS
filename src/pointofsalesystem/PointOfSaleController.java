@@ -93,6 +93,9 @@ public class PointOfSaleController {
     
     public void populateTable(Triplet[] newTable){
         pos.clearTable();
+        
+        //System.out.println("# items"+newTable.length);
+        
         for(int i = 0; i < newTable.length; i++){
             Item balls = (Item)newTable[i].getA();
             int item_id = balls.getID();
