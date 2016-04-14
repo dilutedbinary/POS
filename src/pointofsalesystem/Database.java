@@ -114,6 +114,7 @@ public class Database {
     public  Database() {
 		//Load the JDBC Driver
 		try {
+		    this.userid=1;
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (Exception ex) {
 			System.out.println("Could not load MySQL JDBC Driver - do you have the .jar file set up correctly?");
@@ -129,6 +130,11 @@ return;
 
 		    
 	}
+    public int getCurrentUserID(){
+	
+	return this.userid;
+	
+    }
 
 
 	/**
