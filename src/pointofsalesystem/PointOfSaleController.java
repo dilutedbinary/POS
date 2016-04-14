@@ -21,15 +21,15 @@ public class PointOfSaleController {
     private PurchaseSession model;
     
     
-    public PointOfSaleController(String id, String pass){
-        userID = id;
-        password = pass;
-        pos = new PointOfSaleUI(this);
-       
-        pos.setVisible(true);            //start POS ui
-         pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
-         model.addController(this);
-    }
+//    public PointOfSaleController(String id, String pass){
+//        userID = id;
+//        password = pass;
+//        pos = new PointOfSaleUI(this);
+//       
+//        pos.setVisible(true);            //start POS ui
+//         pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
+//         model.addController(this);
+//    }
     
     public PointOfSaleController(String id, String pass, PurchaseSession ses){
         userID = id;
@@ -37,6 +37,7 @@ public class PointOfSaleController {
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);            //start POS ui
         setModel(ses);
+        model.addController(this);
          pos.setID(id);  //TODO: GET RID OF THIS ONCE USERS ARE PROPERLY IMPLEMENTED
     }
     
@@ -44,7 +45,9 @@ public class PointOfSaleController {
         model = ses;
     }
     
-
+    public String getCashiereID(){
+        return userID;
+    }
     
 /*
     public void addItem(String itemIDString){
@@ -207,18 +210,18 @@ public class PointOfSaleController {
         return model.getTax();
     }
     
-    public void preCheckout(){
-        model.preCheckout(userID);
+    public void preCheckout(String total){
+        model.preCheckout(userID, total);
     }
     
-    public void checkout() {
-		model.preCheckout(userID); //TODO: CHANGE THIS NOT TO ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
-                
-		//Create a new POS Contrller to wipe the screen - WARNING: THIS IS A TERRIBLE MEMORY LEAK RIGHT NOW
-		PurchaseSession newSession = new PurchaseSession(userID,password);
-		pos.setVisible(false);
-		PointOfSaleController newController = new PointOfSaleController(userID,password,newSession);
-	}
+//    public void checkout() {
+//		model.preCheckout(userID); //TODO: CHANGE THIS NOT TO ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
+//                
+//		Create a new POS Contrller to wipe the screen - WARNING: THIS IS A TERRIBLE MEMORY LEAK RIGHT NOW
+//		PurchaseSession newSession = new PurchaseSession(userID,password);
+//		pos.setVisible(false);
+		//PointOfSaleController newController = new PointOfSaleController(userID,password,newSession);
+	//}
 //    public void removeItem(String itemID){
 //        int test;
 //        

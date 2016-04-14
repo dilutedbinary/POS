@@ -173,7 +173,7 @@ public class StockCache {
 	    in.close();
 	    fileIn.close();
 	} catch (IOException i) {
-	    i.printStackTrace();
+	    System.out.println("No saved transactions!");
 	    return null;
 	} catch (ClassNotFoundException c) {
 	    System.out.println("Transaction class not found");

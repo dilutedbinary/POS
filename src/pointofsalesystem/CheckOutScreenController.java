@@ -11,12 +11,14 @@ public class CheckOutScreenController {
     private PurchaseSession ps;
     private CheckOutScreenUI coUI;
     private String tempID;
+    double total;
     
-    public CheckOutScreenController(PurchaseSession ps, String tempID){
+    public CheckOutScreenController(PurchaseSession ps, String tempID, String total){
         this.tempID = tempID;
         this.ps = ps;
         coUI = new CheckOutScreenUI(this);
         coUI.setVisible(true);
+        this.total = Double.parseDouble(total);
         
     }
     
@@ -33,6 +35,9 @@ public class CheckOutScreenController {
     
     public void getReceipt(){
         coUI.setVisible(false);
+        AlertScreen al = new AlertScreen("Change due: $" + (coUI.getChange() - total) + "");
+        al.setVisible(true);
+        //ps.checkout(tempID);
         ps.checkout(tempID);
     }
     
@@ -44,6 +49,6 @@ public class CheckOutScreenController {
             ErrorScreen es = new ErrorScreen(cash + " is not a number");
         }
         //return ps.getChange(test);
-        return 1.00;
+        return coUI.getChange();
     }
 }
