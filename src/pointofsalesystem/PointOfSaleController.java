@@ -251,6 +251,7 @@ public class PointOfSaleController {
     
     public void newPurchaseSession(){
         pos.setVisible(false);
+        pos.dispose();
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);
         pos.setID(userID);

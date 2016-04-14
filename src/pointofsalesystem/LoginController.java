@@ -38,6 +38,7 @@ public class LoginController {
     
     private void switchToPOS(String id, String pass){
         gui.setVisible(false);
+        System.out.println(id);
         PointOfSaleController pos = new PointOfSaleController(id, pass,model);
         gui = null;
     }
