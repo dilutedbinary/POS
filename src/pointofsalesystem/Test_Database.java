@@ -34,11 +34,11 @@ class Test_Database {
 		System.out.println(i1.toString());
 		int amounOfItem1 = testdb.getStock(i1.getID()); 
 		System.out.println(amounOfItem1+" in stock...\n\n");
-		//public void addItem(Triplet<Item, Integer, Integer> t){
-		//Package the items in Triplets
-		Triplet<Item,Integer,Integer> trip1 = new Triplet(i1,4,0);
-		Triplet<Item,Integer,Integer> trip2 = new Triplet(i2,2,0);
-		Triplet<Item,Integer,Integer> trip3 = new Triplet(i3,1,0);
+		//public void addItem(Quadruple<Item, Integer, Integer> t){
+		//Package the items in Quadruples
+		Quadruple<Item,Integer,Integer, Integer> trip1 = new Quadruple(i1,4,0, 0);
+		Quadruple<Item,Integer,Integer, Integer> trip2 = new Quadruple(i2,2,0, 0);
+		Quadruple<Item,Integer,Integer, Integer> trip3 = new Quadruple(i3,1,0, 0);
 		
 		my_trans.addItem(trip1);
 		my_trans.addItem(trip2);
