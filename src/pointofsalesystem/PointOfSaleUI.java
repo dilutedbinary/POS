@@ -79,6 +79,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setAutoscrolls(true);
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -116,6 +121,11 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         });
 
         returnItemButton.setText("Return Item");
+        returnItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnItemButtonActionPerformed(evt);
+            }
+        });
 
         customerIDLabel.setText("Cutomer ID:");
 
@@ -413,6 +423,17 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_removeItemButton1ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        PointOfSaleSystem.systemShutdown();
+        System.out.println("Goodbye");
+    }//GEN-LAST:event_formWindowClosing
+
+    private void returnItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnItemButtonActionPerformed
+        // TODO add your handling code here:
+        posController.addReturnItem(itemIdField.getText());
+    }//GEN-LAST:event_returnItemButtonActionPerformed
+
     private int getSelectedItem(){
         int[] selected = lineItemTable.getSelectedRows();
         if(selected.length==1){
@@ -464,6 +485,10 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     
     public void setID(String cID){
         cashierIDLable.setText(cID);
+    }
+    
+    private void SystemShutdown(){
+        
     }
     
     public void addLineItem(String id, String name, String price, String quantity, String trans){

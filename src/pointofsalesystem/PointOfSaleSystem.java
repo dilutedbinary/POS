@@ -66,8 +66,8 @@ public class PointOfSaleSystem {
 	}
 	System.out.println("Checking for saved Transactions...");
 	StockCache cache = StockCache.getInstance();
-	cache.loadTransactions();
-	if (cache.numPendingTrans() > 0) {
+	Object result = cache.loadTransactions();
+	if (result != null) {
 	    cache.savePendingTrans();
 	}
 	return state;
