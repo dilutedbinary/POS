@@ -86,13 +86,13 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
         }
         
-        Triplet balls = model.addItem(test);
+        Quadruple balls = model.addItem(test, 0);
         
-        Triplet[] newTable = model.getLineItems();
+        Quadruple[] newTable = model.getLineItems();
         populateTable(newTable);
     }
     
-    public void populateTable(Triplet[] newTable){
+    public void populateTable(Quadruple[] newTable){
         pos.clearTable();
         
         //System.out.println("# items"+newTable.length);
