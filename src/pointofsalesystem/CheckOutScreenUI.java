@@ -165,6 +165,10 @@ public class CheckOutScreenUI extends javax.swing.JFrame {
         controller.getReceipt();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public double getChange(){
+        return Double.parseDouble(cashField.getText());
+    }
+    
     /**
      * @param args the command line arguments
      */
