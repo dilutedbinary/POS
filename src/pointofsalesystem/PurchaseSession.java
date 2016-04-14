@@ -10,6 +10,7 @@ public class PurchaseSession {
     private Transaction mFinalize_Transaction;
     private Database mDB;
     private PointOfSaleController posc;
+    private Quadruple[] out;
 
     
     /** Constructor for PurchaseSession. */
@@ -69,7 +70,7 @@ public class PurchaseSession {
     }
     
     public Quadruple[] getLineItems(){
-        Quadruple[] out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
+        out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
         return out;
     }
     
@@ -97,7 +98,6 @@ public class PurchaseSession {
     //TODO: CHANGE THIS TO NOT ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
     public void checkout(String tempID) {  
 		//Save the transaction to the Database
-                System.out.println("here");
 		mDB.saveTransaction(mCurrent_Transaction);
 		//Write this stuff to a text file
 		//Putting it in a try statment will automatically close it after finishing(Java 7 or later)
@@ -109,6 +109,7 @@ public class PurchaseSession {
                 
                 posc.newPurchaseSession();
                 newTransaction(1, Integer.getInteger(posc.getCashiereID()));
+                System.out.println("here!!!");
                 
 	}
 }
