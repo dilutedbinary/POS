@@ -1223,15 +1223,14 @@ return;
     			int item_id = t.getQuadrupleList().get(i).getA().getID();
     			int qty = t.getQuadrupleList().get(i).getB();
     			int rent_or_buy = t.getQuadrupleList().get(i).getC();
-			int period = t.getQuadrupleList().get(i).getD();
     			double price = t.getQuadrupleList().get(i).getA().getPrice();
 //updating the inventory closes the connection...
     			if (!this.connect()) {
-			    return -1;
+    				return -1;
     			}
 			int contractID = 0;
 						//now we need to store rental information (if it is a rental)
-			if(period>=1){
+			if(rent_or_buy==1){
 			    if(verbose)
 				System.out.println("processingrental");
 			query = "INSERT INTO contract (RENTAL_LENGTH,RENTAL_RATE,RENTAL_START,LATE_FEE_RATE) VALUES (?,?,?,?)";

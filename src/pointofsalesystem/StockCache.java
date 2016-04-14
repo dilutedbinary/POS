@@ -144,7 +144,7 @@ public class StockCache {
      * <p>
      * Serializes and stores an array of transactions, to be executed later.
      */
-    public static boolean savePendingTransactions() {
+    public static boolean savePendingTrans() {
 	try {
 	    System.out.println("Transactions before!!");
 	    for (Transaction t : instance.pending) {
