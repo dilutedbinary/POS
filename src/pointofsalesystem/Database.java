@@ -1228,16 +1228,34 @@ return;
     			if (!this.connect()) {
     				return -1;
     			}
+			int contractID = 0;
+						//now we need to store rental information (if it is a rental)
+			if(rent_or_buy==1){
+			    if(verbose)
+				System.out.println("processingrental");
+			query = "INSERT INTO contract (RENTAL_LENGTH,RENTAL_RATE,RENTAL_START,LATE_FEE_RATE) VALUES (?,?,?,?)";
+    			preStatement = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+    			preStatement.setInt(1,t.getTripleList().get(i).getA().getRentalPeriod());
+    			preStatement.setDouble(2,.10);
+    			preStatement.setString(3,""+System.currentTimeMillis());
+    			preStatement.setDouble(4,.50);
+			preStatement.executeUpdate();
+			ResultSet rs = preStatement.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    contractID = rs.getInt(1);
+			}
+			}
 
 		//Create a new query
 		//query = "INSERT INTO transaction_item (TRANSACTION_ID,ITEM_ID,QUANTITY,TYPE,PRICE_SOLD) VALUES (" + transaction_id + "," + item_id + "," + qty + "," + rent_or_buy + "," + price + ");";
-    			query = "INSERT INTO transaction_item (TRANSACTION_ID,ITEM_ID,QUANTITY,TYPE,PRICE_SOLD) VALUES (?,?,?,?,?)";
+    			query = "INSERT INTO transaction_item (TRANSACTION_ID,ITEM_ID,QUANTITY,TYPE,PRICE_SOLD,contract_id) VALUES (?,?,?,?,?,?)";
     			preStatement = conn.prepareStatement(query);
     			preStatement.setInt(1,transaction_id);
     			preStatement.setInt(2,item_id);
     			preStatement.setInt(3,qty);
     			preStatement.setInt(4,rent_or_buy);
     			preStatement.setDouble(5,price);
+			preStatement.setInt(6,contractID);
 		//Execute the query
     			preStatement.executeUpdate();
 
@@ -1246,6 +1264,8 @@ return;
     				preStatement.close();
     				return -1;
     			}
+			
+
 
     		}
 

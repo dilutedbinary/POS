@@ -26,6 +26,15 @@ public class Item implements Serializable {
 	setDescription(mDescription);
 	setPrice(mPrice);
     }
+    public Item(Item i){
+	if(i!=null){
+	    setID(i.getID());
+	    setName(i.getName());
+	    setTaxType(i.getTaxType());
+	    setDescription(i.getDescription());
+	    setPrice(i.getPrice());
+	}
+    }
 	
     public void setRentalPeriod(int mRentalPeriod){
         this.mRentalPeriod = mRentalPeriod;
@@ -81,6 +90,9 @@ public class Item implements Serializable {
 
 		//Note I am omitting price due to rounding errors and such
         return (this.mID == i.mID && this.mName.equals(i.mName) && this.mTax_Type == i.mTax_Type && this.mDescription.equals(i.mDescription));
+    }
+    public Item getCopy(){
+	return new Item(this);
     }
 
 }

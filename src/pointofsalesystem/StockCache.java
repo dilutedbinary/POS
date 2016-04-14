@@ -20,10 +20,13 @@ public class StockCache {
      * instance of the StochCache, used for singleton design method.
      */
     private static StockCache instance;
+
     /**
      * Stock list of items, which in turn have item description and
      */
     private ArrayList<Item> stock = new ArrayList<Item>();
+
+    private ArrayList<Transaction> pending;
 
     /**
      * Creates an Item object
@@ -32,6 +35,7 @@ public class StockCache {
      * @param connection -- connection to populate cache
      */
     private StockCache() {
+	pending = new ArrayList<Transaction>();
     }
 
     public static StockCache getInstance() {
@@ -58,6 +62,22 @@ public class StockCache {
 	    return true;
 	}//instance was null
 	return false;
+    }
+
+    public static int numPendingTrans() {
+	return instance.pending.size();
+    }
+
+    public static void storePendingTrans(Transaction t) {
+	instance.pending.add(t);
+    }
+
+    public static void commitPendingTrans(Database d) {
+	if(d.isConnected()){
+	for (Transaction t : instance.pending) {
+	    d.saveTransaction(t);
+	}
+    }
     }
 
     /**
@@ -116,7 +136,7 @@ public class StockCache {
 	if (index < 0) {
 	    return null;
 	}
-	return instance.stock.get(index);
+	return instance.stock.get(index).getCopy();
     }
 
     /**
@@ -124,15 +144,15 @@ public class StockCache {
      * <p>
      * Serializes and stores an array of transactions, to be executed later.
      */
-    public static boolean saveTransactions(ArrayList<Transaction> trans) {
+    public static boolean savePendingTransactions() {
 	try {
 	    System.out.println("Transactions before!!");
-	    for (Transaction t : trans) {
+	    for (Transaction t : instance.pending) {
 		System.out.println(t.toString());
 	    }
 	    FileOutputStream fileOut = new FileOutputStream("backup/transactions.ser");
 	    ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	    out.writeObject(trans);
+	    out.writeObject(instance.pending);
 	    out.close();
 	    fileOut.close();
 	    System.out.printf("Serialized transactions are stored in  transactions.ser");
@@ -146,11 +166,10 @@ public class StockCache {
     }
 
     public static ArrayList<Transaction> loadTransactions() {
-	ArrayList<Transaction> trans = null;
 	try {
 	    FileInputStream fileIn = new FileInputStream("backup/transactions.ser");
 	    ObjectInputStream in = new ObjectInputStream(fileIn);
-	    trans = (ArrayList<Transaction>) in.readObject();
+	    instance.pending = (ArrayList<Transaction>) in.readObject();
 	    in.close();
 	    fileIn.close();
 	} catch (IOException i) {
@@ -162,14 +181,10 @@ public class StockCache {
 	    return null;
 	}
 	System.out.println("Transactions After!!");
-	for (Transaction t : trans) {
+	for (Transaction t : instance.pending) {
 	    System.out.println(t.toString());
 	}
-	return trans;
+	return instance.pending;
     }
 
 }
-
-// TODO: tostring Method
-// TODO
-

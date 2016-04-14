@@ -10,8 +10,10 @@ public class CheckOutScreenController {
     private int paymentType;
     private PurchaseSession ps;
     private CheckOutScreenUI coUI;
+    private String tempID;
     
-    public CheckOutScreenController(PurchaseSession ps){
+    public CheckOutScreenController(PurchaseSession ps, String tempID){
+        this.tempID = tempID;
         this.ps = ps;
         coUI = new CheckOutScreenUI(this);
         coUI.setVisible(true);
@@ -27,6 +29,10 @@ public class CheckOutScreenController {
         }
         //return ps.verifyCreditCard(test);
         return true;
+    }
+    
+    public void getReceipt(){
+        ps.checkout(tempID);
     }
     
     public double getChange(String cash){
