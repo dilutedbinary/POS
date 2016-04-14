@@ -18,6 +18,7 @@ public class CheckOutScreenController {
         this.ps = ps;
         coUI = new CheckOutScreenUI(this);
         coUI.setVisible(true);
+        coUI.setTotal(total);
         this.total = Double.parseDouble(total);
         
     }
@@ -34,8 +35,9 @@ public class CheckOutScreenController {
     }
     
     public void getReceipt(){
+        double change = coUI.getChange();
         coUI.setVisible(false);
-        AlertScreen al = new AlertScreen("Change due: $" + (coUI.getChange() - total) + "");
+        AlertScreen al = new AlertScreen("Change due: $" + (change - total) + "");
         al.setVisible(true);
         //ps.checkout(tempID);
         ps.checkout(tempID);
