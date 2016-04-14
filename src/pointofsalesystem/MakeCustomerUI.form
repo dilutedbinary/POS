@@ -30,15 +30,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="1" pref="502" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane1" min="-2" pref="501" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jScrollPane1" alignment="0" pref="591" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -67,7 +64,6 @@
                                       <Component id="phoneLabel" min="-2" max="-2" attributes="0"/>
                                       <Component id="mobileLabel" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="billAddressLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="usernameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -83,17 +79,26 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="createCutomerButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameField" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="mobileField" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailField" min="-2" max="-2" attributes="0"/>
-                          <Component id="phoneField" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="shipAddressField" min="-2" max="-2" attributes="0"/>
-                          <Component id="billingAddressField" min="-2" max="-2" attributes="0"/>
-                          <Component id="usernameField" min="-2" max="-2" attributes="0"/>
-                          <Component id="password1Field" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="password2Field" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="creditcardField1" min="-2" max="-2" attributes="0"/>
+                          <Component id="ship_address_zip" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="ship_address_state" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cred_cvc" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="cred_year" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="cred_month" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="cred_number" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="createCutomerButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="nameField" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="mobileField" min="-2" max="-2" attributes="0"/>
+                              <Component id="emailField" min="-2" max="-2" attributes="0"/>
+                              <Component id="phoneField" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="usernameField" min="-2" max="-2" attributes="0"/>
+                              <Component id="password1Field" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="password2Field" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cred_name" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="ship_address_line2" alignment="0" pref="218" max="32767" attributes="0"/>
+                              <Component id="ship_address_line1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ship_address_city" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -126,36 +131,47 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="shipAddressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="shipAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ship_address_line1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="billingAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="billAddressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="ship_address_line2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ship_address_city" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="ship_address_state" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="ship_address_zip" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="usernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="usernameField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="password1Field" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="password2Field" min="-2" max="-2" attributes="0"/>
-                          <Component id="password2Label" min="-2" max="-2" attributes="0"/>
+                          <Component id="password1Field" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="creditCardLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="creditcardField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="password2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="password2Field" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cred_name" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="creditCardLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cred_number" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cred_month" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cred_year" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cred_cvc" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="createCutomerButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -211,19 +227,14 @@
                 <Property name="text" type="java.lang.String" value="Shipping Address:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="shipAddressField">
+            <Component class="javax.swing.JTextField" name="ship_address_line1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="shipping address"/>
+                <Property name="text" type="java.lang.String" value="line1"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="billAddressLabel">
+            <Component class="javax.swing.JTextField" name="ship_address_line2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Billing Address:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="billingAddressField">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="billing address"/>
+                <Property name="text" type="java.lang.String" value="line2"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="usernameLabel">
@@ -266,12 +277,62 @@
             </Component>
             <Component class="javax.swing.JLabel" name="creditCardLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Creditcard #:"/>
+                <Property name="text" type="java.lang.String" value="CreditCard:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="creditcardField1">
+            <Component class="javax.swing.JTextField" name="cred_name">
               <Properties>
-                <Property name="text" type="java.lang.String" value="################"/>
+                <Property name="text" type="java.lang.String" value="Card Name"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cred_nameActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="cred_number">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Card Number"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cred_numberActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="cred_month">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exp Month (ex 06)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cred_monthActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="cred_year">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exp Year"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cred_yearActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="cred_cvc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cvc"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cred_cvcActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="ship_address_city">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="city"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="ship_address_state">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="state"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="ship_address_zip">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="zip"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -222,6 +222,48 @@ return;
 
 	}
 
+		public int getUserID(String username, String password) {
+		if (!this.connect()) {
+			this.disconnect();
+
+		    //connection error
+			return -1;
+		}
+
+		try {
+			stmt = conn.createStatement();
+			//Query for a person with the specified username and password
+			rs = stmt.executeQuery("SELECT * FROM person WHERE USERNAME = '" + username + "' AND USER_PASSWD = '" + password + "';");
+			//Try to extract data from teh query, can be anything but in this case let's get person_id
+			//An exception will be thrown if the query is empty
+			if(verbose)
+				printResultSet(rs);
+
+
+			if(!rs.next()){
+			    this.disconnect();
+
+			    return -1;
+			}
+
+			//System.out.println("Printed");
+			userid = Integer.parseInt(rs.getString("PERSON_ID"));
+			//System.out.println("type set");
+			this.disconnect();
+			//System.out.println("disconnected...");
+
+			return userid;
+		} catch (SQLException ex) {
+			this.disconnect();
+			return -2;
+		}
+
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Connects the Database object to the actual database. By convention the database connection should be opened and
 	 * then closed on every to this Database object to ensure there aren't any connections left open
@@ -779,8 +821,8 @@ return;
     		rs = preStatement.executeQuery();
     		if(rs.next()){
     			System.out.println("Warning in Database.storeUser - User already exists within Database");
-                        this.disconnect();
-    			return -1;
+                      //  this.disconnect();
+    			//return -1;
     		}
 
 	    //Since it doesn't exist within the Database we can store it within the database
@@ -803,6 +845,7 @@ return;
     		preStatement.setString(1,u.getUsername());
     		preStatement.setString(2,u.getPassword());
     		rs = preStatement.executeQuery();
+                rs.next();
     		int new_id = rs.getInt("PERSON_ID");
                 u.setId(new_id); //might as well set the id of the new user to what the database assigned it
 

@@ -47,9 +47,7 @@ public class MakeCasheirUI extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         shipAddressLabel = new javax.swing.JLabel();
-        shipAddressField = new javax.swing.JTextField();
-        billAddressLabel = new javax.swing.JLabel();
-        billingAddressField = new javax.swing.JTextField();
+        ship_address_line1 = new javax.swing.JTextField();
         usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         password1Field = new javax.swing.JPasswordField();
@@ -58,7 +56,15 @@ public class MakeCasheirUI extends javax.swing.JFrame {
         password2Label = new javax.swing.JLabel();
         createCutomerButton = new javax.swing.JButton();
         creditCardLabel = new javax.swing.JLabel();
-        creditcardField = new javax.swing.JTextField();
+        cc_name = new javax.swing.JTextField();
+        ship_address_line2 = new javax.swing.JTextField();
+        ship_address_city = new javax.swing.JTextField();
+        ship_address_state = new javax.swing.JTextField();
+        ship_address_zip = new javax.swing.JTextField();
+        cc_month = new javax.swing.JTextField();
+        cc_year = new javax.swing.JTextField();
+        cc_cvc = new javax.swing.JTextField();
+        cc_number = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,11 +88,12 @@ public class MakeCasheirUI extends javax.swing.JFrame {
 
         shipAddressLabel.setText("Shipping Address:");
 
-        shipAddressField.setText("shipping address");
-
-        billAddressLabel.setText("Billing Address:");
-
-        billingAddressField.setText("billing address");
+        ship_address_line1.setText("Line 1");
+        ship_address_line1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ship_address_line1ActionPerformed(evt);
+            }
+        });
 
         usernameLabel.setText("Username:");
 
@@ -107,9 +114,40 @@ public class MakeCasheirUI extends javax.swing.JFrame {
             }
         });
 
-        creditCardLabel.setText("Creditcard #:");
+        creditCardLabel.setText("Creditcard:");
 
-        creditcardField.setText("################");
+        cc_name.setText("Name on card");
+        cc_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cc_nameActionPerformed(evt);
+            }
+        });
+
+        ship_address_line2.setText("Line 2");
+        ship_address_line2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ship_address_line2ActionPerformed(evt);
+            }
+        });
+
+        ship_address_city.setText("City");
+
+        ship_address_state.setText("State");
+        ship_address_state.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ship_address_stateActionPerformed(evt);
+            }
+        });
+
+        ship_address_zip.setText("Zip");
+
+        cc_month.setText("Exp Month ex.(06)");
+
+        cc_year.setText("Exp Year");
+
+        cc_cvc.setText("cvc");
+
+        cc_number.setText("Card Number");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,36 +161,43 @@ public class MakeCasheirUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
+                                .addGap(78, 78, 78)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(emailLabel)
-                                    .addComponent(shipAddressLabel)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(phoneLabel)
-                                        .addComponent(mobileLabel))
-                                    .addComponent(billAddressLabel)
-                                    .addComponent(usernameLabel)))
+                                        .addComponent(mobileLabel))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(password2Label, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(shipAddressLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(creditCardLabel, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(shipAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(billingAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(creditcardField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createCutomerButton))))
-                .addContainerGap(216, Short.MAX_VALUE))
+                            .addComponent(createCutomerButton)
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cc_name, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cc_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cc_cvc, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cc_year, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(cc_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ship_address_line1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ship_address_line2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ship_address_city, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ship_address_state, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ship_address_zip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,35 +221,45 @@ public class MakeCasheirUI extends javax.swing.JFrame {
                     .addComponent(emailLabel)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(shipAddressLabel)
-                    .addComponent(shipAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(billingAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(billAddressLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ship_address_line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ship_address_line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ship_address_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ship_address_state, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ship_address_zip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordLabel)
+                    .addComponent(password1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(password2Label)
+                    .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(password2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password2Label))
+                    .addComponent(creditCardLabel)
+                    .addComponent(cc_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(creditCardLabel)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(creditcardField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(createCutomerButton))))
+                .addComponent(cc_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cc_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cc_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cc_cvc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(createCutomerButton)
+                .addGap(87, 87, 87))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -213,13 +268,17 @@ public class MakeCasheirUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -231,16 +290,40 @@ public class MakeCasheirUI extends javax.swing.JFrame {
         String phone = phoneField.getText();
         String mobile = mobileField.getText();
         String email = emailField.getText();
-        String shipAdd = shipAddressField.getText();
-        String billAdd = billingAddressField.getText();
-        String creditCard = creditcardField.getText();
+        String ship_add_line1 = ship_address_line1.getText();
+        String ship_add_line2 = ship_address_line2.getText();
+         String ship_add_city = ship_address_city.getText();
+         String ship_add_state = ship_address_state.getText();
+         String ship_add_zip = ship_address_zip.getText();
+        String cred_name = cc_name.getText();
+         String cred_number = cc_number.getText();
+          String cred_month = cc_month.getText();
+          String cred_year = cc_year.getText();
+          String cred_cvc = cc_cvc.getText();
         String username = usernameField.getText();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
         
-        controller.createCashier(name, phone, mobile, shipAdd, billAdd, creditCard, username, password1, password2);
+        //The 1 mean
+        controller.createCashier(name,phone,mobile,email,ship_add_line1, ship_add_line2, ship_add_city, ship_add_state, ship_add_zip,cred_name,cred_number, cred_month,cred_year,cred_cvc, username, password1, password2);
 
     }//GEN-LAST:event_createCutomerButtonActionPerformed
+
+    private void ship_address_line2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ship_address_line2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ship_address_line2ActionPerformed
+
+    private void ship_address_line1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ship_address_line1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ship_address_line1ActionPerformed
+
+    private void ship_address_stateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ship_address_stateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ship_address_stateActionPerformed
+
+    private void cc_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cc_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cc_nameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,11 +362,13 @@ public class MakeCasheirUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel billAddressLabel;
-    private javax.swing.JTextField billingAddressField;
+    private javax.swing.JTextField cc_cvc;
+    private javax.swing.JTextField cc_month;
+    private javax.swing.JTextField cc_name;
+    private javax.swing.JTextField cc_number;
+    private javax.swing.JTextField cc_year;
     private javax.swing.JButton createCutomerButton;
     private javax.swing.JLabel creditCardLabel;
-    private javax.swing.JTextField creditcardField;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JPanel jPanel1;
@@ -298,8 +383,12 @@ public class MakeCasheirUI extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLabel;
-    private javax.swing.JTextField shipAddressField;
     private javax.swing.JLabel shipAddressLabel;
+    private javax.swing.JTextField ship_address_city;
+    private javax.swing.JTextField ship_address_line1;
+    private javax.swing.JTextField ship_address_line2;
+    private javax.swing.JTextField ship_address_state;
+    private javax.swing.JTextField ship_address_zip;
     private javax.swing.JLabel title;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel usernameLabel;
