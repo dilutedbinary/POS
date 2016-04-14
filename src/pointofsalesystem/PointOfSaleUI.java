@@ -131,14 +131,14 @@ public class PointOfSaleUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ItemId", "Name", "Price", "Quantity"
+                "ItemId", "Name", "Price", "Quantity", "Transaction"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -164,6 +164,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
             lineItemTable.getColumnModel().getColumn(1).setResizable(false);
             lineItemTable.getColumnModel().getColumn(2).setResizable(false);
             lineItemTable.getColumnModel().getColumn(3).setResizable(false);
+            lineItemTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         cancelSaleButton.setText("Cancel Sale");
@@ -361,7 +362,7 @@ public class PointOfSaleUI extends javax.swing.JFrame {
     }
 
     private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutButtonActionPerformed
-        posController.preCheckout();
+        posController.preCheckout(TotalField.getText());
     }//GEN-LAST:event_checkoutButtonActionPerformed
 
     private void lineItemTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineItemTableMousePressed
@@ -465,8 +466,8 @@ public class PointOfSaleUI extends javax.swing.JFrame {
         cashierIDLable.setText(cID);
     }
     
-    public void addLineItem(String id, String name, String price, String quantity){
-        modelT.addRow(new Object[]{id, name, price, quantity});
+    public void addLineItem(String id, String name, String price, String quantity, String trans){
+        modelT.addRow(new Object[]{id, name, price, quantity, trans});
     }
     
     public void clearTable(){

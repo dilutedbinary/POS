@@ -66,9 +66,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="User ID"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserIDFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="PasswordField">
       <Properties>
@@ -87,7 +84,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="LoginButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Login"/>
+        <Property name="text" type="java.lang.String" value="Casheir Login"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginButtonActionPerformed"/>

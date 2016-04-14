@@ -89,12 +89,13 @@ public class PurchaseSession {
     public String getCashierID(){
     	return mUserID;
     }
-    public void preCheckout(String tempID){
-        CheckOutScreenController coController = new CheckOutScreenController(this, tempID);
+    public void preCheckout(String tempID, String total){
+        CheckOutScreenController coController = new CheckOutScreenController(this, tempID, total);
     }
     //TODO: CHANGE THIS TO NOT ACCEPT A STRING ONCE USERS ARE IMPLEMENTED
     public void checkout(String tempID) {  
 		//Save the transaction to the Database
+                System.out.println("here");
 		mDB.saveTransaction(mCurrent_Transaction);
 		//Write this stuff to a text file
 		//Putting it in a try statment will automatically close it after finishing(Java 7 or later)
@@ -103,7 +104,9 @@ public class PurchaseSession {
 	} catch(java.io.FileNotFoundException ex) {
 		System.out.println("ERROR - Could not print receipt to file!!");
 	}
+                
                 posc.newPurchaseSession();
+                newTransaction(1, Integer.getInteger(posc.getCashiereID()));
                 
 	}
 }
