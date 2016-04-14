@@ -100,7 +100,7 @@ public class PurchaseSession {
 		//Write this stuff to a text file
 		//Putting it in a try statment will automatically close it after finishing(Java 7 or later)
 		try(PrintWriter out = new PrintWriter("receipt_"+System.currentTimeMillis()+".txt")) {
-		out.println(mCurrent_Transaction.deprecatedtoString(tempID));
+		out.println(mCurrent_Transaction.toString(tempID));
 	} catch(java.io.FileNotFoundException ex) {
 		System.out.println("ERROR - Could not print receipt to file!!");
 	}

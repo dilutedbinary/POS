@@ -1219,23 +1219,24 @@ return;
 	    //Now referencing this Transaction ID we need to insert into the transaction_item table one time for every unique item in the transaction specifying the item_id, quantity, type, price_sold,tax_amt
     		for (int i = 0; i < t.getQuadrupleList().size(); i++) {
 		//Get the info we need
-		//A is an Item, B is amount, C is a boolean stating whether or not it is a rental
+	//A is an Item, B is amount, C is a boolean stating whether or not it is a rental
     			int item_id = t.getQuadrupleList().get(i).getA().getID();
     			int qty = t.getQuadrupleList().get(i).getB();
     			int rent_or_buy = t.getQuadrupleList().get(i).getC();
+			int period = t.getQuadrupleList().get(i).getD();
     			double price = t.getQuadrupleList().get(i).getA().getPrice();
 //updating the inventory closes the connection...
     			if (!this.connect()) {
-    				return -1;
+			    return -1;
     			}
 			int contractID = 0;
 						//now we need to store rental information (if it is a rental)
-			if(rent_or_buy==1){
+			if(period>=1){
 			    if(verbose)
 				System.out.println("processingrental");
 			query = "INSERT INTO contract (RENTAL_LENGTH,RENTAL_RATE,RENTAL_START,LATE_FEE_RATE) VALUES (?,?,?,?)";
     			preStatement = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-    			preStatement.setInt(1,t.getQuadrupleList().get(i).getA().getRentalPeriod());
+    			preStatement.setInt(1,period);
     			preStatement.setDouble(2,.10);
     			preStatement.setString(3,""+System.currentTimeMillis());
     			preStatement.setDouble(4,.50);
