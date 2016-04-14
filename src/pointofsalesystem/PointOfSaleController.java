@@ -256,6 +256,7 @@ public class PointOfSaleController {
         pos = new PointOfSaleUI(this);
         pos.setVisible(true);
         pos.setID(userID);
+        //model.newTransaction(1, 1);
     }
     
 }

@@ -10,7 +10,6 @@ public class PurchaseSession {
     private Transaction mFinalize_Transaction;
     private Database mDB;
     private PointOfSaleController posc;
-    private Quadruple[] out;
 
     
     /** Constructor for PurchaseSession. */
@@ -33,7 +32,11 @@ public class PurchaseSession {
     public void newTransaction(int customer_id, int cashier_id) {
 		User u1 = mDB.getUser(customer_id);
                 User u2 = mDB.getUser(cashier_id);
+                mCurrent_Transaction = null;
 		mCurrent_Transaction = new Transaction(u1,u2);
+                if(mCurrent_Transaction.getQuadrupleList() == null){
+                    System.out.println("is null");
+                }
 	}
     
 
@@ -69,7 +72,8 @@ public class PurchaseSession {
     }
     
     public Quadruple[] getLineItems(){
-        out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
+        Quadruple [] out = mCurrent_Transaction.getQuadrupleList().toArray(new Quadruple[mCurrent_Transaction.getQuadrupleList().size()]);
+        System.out.println("this length is: "+ out.length);
         return out;
     }
     
@@ -107,8 +111,8 @@ public class PurchaseSession {
 	}
                 
                 posc.newPurchaseSession();
-                newTransaction(1, Integer.getInteger(posc.getCashiereID()));
-                
+                newTransaction(0, mDB.getCurrentUserID);
+                System.out.println("after trans");
                 
 	}
 }
