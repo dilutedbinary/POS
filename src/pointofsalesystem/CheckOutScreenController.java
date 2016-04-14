@@ -32,6 +32,7 @@ public class CheckOutScreenController {
     }
     
     public void getReceipt(){
+        coUI.setVisible(false);
         ps.checkout(tempID);
     }
     

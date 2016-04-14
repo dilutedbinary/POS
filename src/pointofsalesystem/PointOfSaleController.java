@@ -20,6 +20,7 @@ public class PointOfSaleController {
     private String password; 
     private PurchaseSession model;
     
+    
     public PointOfSaleController(String id, String pass){
         userID = id;
         password = pass;
@@ -190,6 +191,17 @@ public class PointOfSaleController {
             ErrorScreen es = new ErrorScreen(idString + " is not a number");
         }
         //pass customer Id to session
+    }
+    
+    public PointOfSaleController getPOSC(){
+        return this;
+    }
+    
+    public void newPurchaseSession(){
+        pos.setVisible(false);
+        pos = new PointOfSaleUI(this);
+        pos.setVisible(true);
+        pos.setID(userID);
     }
     
 }
