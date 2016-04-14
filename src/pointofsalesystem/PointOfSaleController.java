@@ -116,7 +116,21 @@ public class PointOfSaleController {
         }
     }
     
-
+//    public void removeItem(String idString){
+//        int test = 69;
+//        
+//        try{
+//           test = (Integer.parseInt(itemIDString));
+//        }catch(Exception ex){
+//            ErrorScreen es = new ErrorScreen(itemIDString + " is not a number");
+//            return;
+//        }
+//        
+//        Quadruple balls = model.removeItem(test);
+//        
+//        Quadruple[] newTable = model.getLineItems();
+//        populateTable(newTable);
+//    }
     
     public void addReturnItem(String itemIDString){
        int test = 69;
